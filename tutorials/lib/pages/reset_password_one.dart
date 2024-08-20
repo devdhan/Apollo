@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/components/my_textfield.dart';
 import 'package:tutorials/components/my_button.dart';
-import 'package:tutorials/pages/reset_password_two.dart';
+import 'package:tutorials/pages/otp_screen.dart';
 
 class ResetPasswordOne extends StatelessWidget {
   ResetPasswordOne({super.key});
 
   final emailController = TextEditingController();
 
-  void resetPasswordTwo(BuildContext context) {
-    // Navigate to VerifyEmail page
+  void Otpscreen(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ResetPasswordTwo()),
+      MaterialPageRoute(builder: (context) => OtpScreen()),
     );
   }
 
@@ -77,7 +76,7 @@ class ResetPasswordOne extends StatelessWidget {
                   height: 30,
                 ),
                 MyButton(
-                  onTap: () => resetPasswordTwo(context),
+                  onTap: () => Otpscreen(context),
                   buttonText: 'Next',
                   fontSize: 16,
                   buttoncolor: const Color.fromRGBO(17, 16, 11, 1),

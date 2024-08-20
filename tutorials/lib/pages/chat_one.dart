@@ -234,6 +234,7 @@ class ChatOne extends StatelessWidget {
                 ),
               ),
             ),
+            //Suggestion buttons
             Positioned(
               top: 340.0,
               left: 0,
@@ -278,7 +279,7 @@ class ChatOne extends StatelessWidget {
                   child: MyButton(
                     onTap: () {},
                     buttonText: 'What are Newton’s three laws of motion?',
-                    buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
+                    buttoncolor: const Color(0xFF11100B),
                     buttonTextColor: const Color(0xFFEAE3D1),
                     fontSize: 12,
                   ),

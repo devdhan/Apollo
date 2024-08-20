@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/components/otp_textfield_widget.dart';
+import 'package:tutorials/pages/reset_password_two.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
 
-  void chat() {}
+  void resetPasswordTwo(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ResetPasswordTwo()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,15 +76,20 @@ class OtpScreen extends StatelessWidget {
                     fontWeight: FontWeight.w300,
                     fontSize: 12,
                   )),
-
+              const SizedBox(
+                height: 2,
+              ),
               const Text('Resend an OTP',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
                       color: Color(0xFF000000),
                       fontSize: 14,
                       decoration: TextDecoration.underline)),
+              const SizedBox(
+                height: 20,
+              ),
               MyButton(
-                onTap: chat,
+                onTap: () => resetPasswordTwo(context),
                 buttonText: 'Verify',
                 fontSize: 16,
                 buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
