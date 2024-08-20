@@ -203,7 +203,6 @@ class ChatTwo extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // Text at the top
                   const Padding(
                     padding: EdgeInsets.only(top: 10.0),
                     child: Center(
@@ -314,7 +313,6 @@ class ChatTwo extends StatelessWidget {
                       color: Color(0xAA000000),
                       fontWeight: FontWeight.w600,
                       fontSize: 12,
-                      letterSpacing: -0.41,
                     ),
                     suffixIcon: Row(
                       mainAxisSize: MainAxisSize.min,
