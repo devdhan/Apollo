@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:tutorials/components/my_button.dart';
-import 'package:tutorials/pages/about_app.dart';
-import 'package:tutorials/pages/chat_two.dart';
-// import 'package:tutorials/pages/search_history.dart';
-import 'dart:math' as math;
 import 'package:tutorials/components/logout_dialog.dart';
+import 'package:tutorials/pages/chat_one.dart';
+import 'package:tutorials/pages/about_app.dart';
+import 'dart:math' as math;
 
-class ChatOne extends StatelessWidget {
-  ChatOne({super.key});
+class ChatTwo extends StatelessWidget {
+  ChatTwo({super.key});
 
   final messageController = TextEditingController();
 
-  // Navigate to About page
   void about(BuildContext context) {
     Navigator.push(
       context,
@@ -23,7 +20,7 @@ class ChatOne extends StatelessWidget {
   void searchHistory(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ChatTwo()),
+      MaterialPageRoute(builder: (context) => ChatOne()),
     );
   }
 
@@ -45,7 +42,7 @@ class ChatOne extends StatelessWidget {
               ),
             ],
           ),
-          //APPBAR
+          // APPBAR
           child: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -84,7 +81,7 @@ class ChatOne extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 20.0),
                 child: IconButton(
-                  onPressed: () => searchHistory(context),
+                  onPressed: () {},
                   icon: const Icon(Icons.history),
                   color: const Color(0xFF000000),
                 ),
@@ -93,7 +90,7 @@ class ChatOne extends StatelessWidget {
           ),
         ),
       ),
-      //DRAWER
+      // DRAWER
       drawer: Drawer(
         child: Container(
           color: const Color(0xFFEAE3D1),
@@ -192,102 +189,96 @@ class ChatOne extends StatelessWidget {
           ),
         ),
       ),
-      //BODY
       backgroundColor: const Color.fromRGBO(234, 227, 209, 1),
       body: SafeArea(
         child: Stack(
           children: <Widget>[
+            // Background image
             Image.asset(
               'assets/image.png',
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
             ),
+            // Text at the top
             const Positioned(
-              top: 100.0,
+              top: 15.0,
               left: 0,
               right: 0,
               child: Center(
                 child: Text(
-                  'Hello, there\nHow can I help you\ntoday?',
+                  'Ask me anything',
                   style: TextStyle(
-                    fontSize: 34,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF11100B),
-                  ),
+                      fontSize: 13,
+                      fontFamily: 'Montserrat',
+                      color: Color(0xA4000000)),
                 ),
               ),
             ),
-            const Positioned(
-              top: 300.0,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Text(
-                  'Suggestions:',
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF000000),
-                  ),
-                ),
-              ),
-            ),
-            //Suggestion buttons
+            // First container with text
             Positioned(
-              top: 340.0,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: MyButton(
-                    onTap: () {},
-                    buttonText: 'Can you explain the theory of evolution?',
-                    buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
-                    buttonTextColor: const Color(0xFFEAE3D1),
-                    fontSize: 12,
+              top: 50.0,
+              left: 150,
+              right: 15,
+              child: Container(
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(30)),
+                    color: Color(0xFF11100B)),
+                child: const Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
+                  child: Text(
+                    'Explain the theory of evolution in details and give various examples',
+                    style: TextStyle(
+                        fontSize: 10,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFFFFFFFF)),
                   ),
                 ),
               ),
             ),
             Positioned(
-              top: 410.0,
-              left: 0,
+              top: 130.0,
+              left: 15,
               right: 0,
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: MyButton(
-                    onTap: () {},
-                    buttonText: 'How do you solve quadratic equations?',
-                    buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
-                    buttonTextColor: const Color(0xFFEAE3D1),
-                    fontSize: 12,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/blankcircle.png',
                   ),
-                ),
+                ],
               ),
             ),
             Positioned(
-              top: 480.0,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: MyButton(
-                    onTap: () {},
-                    buttonText: 'What are Newton’s three laws of motion?',
-                    buttoncolor: const Color(0xFF11100B),
-                    buttonTextColor: const Color(0xFFEAE3D1),
-                    fontSize: 12,
+              top: 170.0,
+              left: 15,
+              right: 150,
+              child: Container(
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30),
+                        bottomRight: Radius.circular(30),
+                        bottomLeft: Radius.circular(20)),
+                    color: Color(0xFFFFFFFF)),
+                child: const Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
+                  child: Text(
+                    'To write your exam effectively, start by preparing thoroughly with regular study and practice of past papers. Ensure you understand the exam format and gather all necessary materials. On exam day, manage your time by reading instructions carefully, starting with easier questions, and allocating time for each section. Use elimination for multiple choice questions, be concise in short answers, and outline essays before writing. Review your work for errors, completeness, and clarity. For objective exams, read all options; for subjective exams, support arguments with evidence; for problem-solving exams, show all work and double-check calculations. Post-exam, reflect on your performance to improve for next time.',
+                    style: TextStyle(
+                        fontSize: 10,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFF000000)),
                   ),
                 ),
               ),
             ),
-            //Chat Textfield
             Positioned(
               bottom: 0,
               left: 0,
