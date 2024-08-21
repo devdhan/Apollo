@@ -201,6 +201,7 @@ class ChatTwo extends StatelessWidget {
           // Scrollable content
           Positioned.fill(
             child: SingleChildScrollView(
+              reverse: true,
               child: Column(
                 children: [
                   const Padding(
@@ -278,7 +279,7 @@ class ChatTwo extends StatelessWidget {
           ),
           // Bottom textfield
           Positioned(
-            bottom: 10,
+            bottom: 15,
             left: 0,
             right: 0,
             child: Container(
