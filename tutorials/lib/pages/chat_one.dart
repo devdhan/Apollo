@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/pages/about_app.dart';
 import 'package:tutorials/pages/chat_two.dart';
-// import 'package:tutorials/pages/search_history.dart';
+import 'package:tutorials/components/custom_drawer.dart';
 import 'dart:math' as math;
-import 'package:tutorials/components/logout_dialog.dart';
 
 class ChatOne extends StatelessWidget {
   ChatOne({super.key});
@@ -94,104 +93,7 @@ class ChatOne extends StatelessWidget {
         ),
       ),
       //DRAWER
-      drawer: Drawer(
-        child: Container(
-          color: const Color(0xFFEAE3D1),
-          child: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 50, left: 30.0),
-                  child: Text(
-                    'Recents',
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF000000),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 15.0),
-                  child: ListTile(
-                    title: Text(
-                      'Today',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF000000),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () => about(context),
-                        child: SizedBox(
-                          width: 250,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 12.0),
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: const Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                'About',
-                                style: TextStyle(
-                                  color: Color(0xFFEAE3D1),
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20.0),
-                        child: TextButton(
-                          onPressed: () => showLogoutDialog(context),
-                          child: SizedBox(
-                            width: 250,
-                            child: Container(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 12.0),
-                              decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              child: const Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Log out',
-                                  style: TextStyle(
-                                    color: Color(0xFFEAE3D1),
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      drawer: const CustomDrawer(),
       //BODY
       backgroundColor: const Color.fromRGBO(234, 227, 209, 1),
       body: SafeArea(
