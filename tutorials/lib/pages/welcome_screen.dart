@@ -45,16 +45,21 @@ class WelcomeScreen extends StatelessWidget {
               Column(
                 children: [
                   const SizedBox(height: 140),
-                  const Text(
-                    'APOLLO',
-                    style: TextStyle(
-                      fontFamily: 'Vanguard',
-                      fontSize: 43,
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF11100B),
-                    ),
+                  Image.asset(
+                    'assets/APOLLO.png',
+                    height: 52,
+                    width: 99,
                   ),
-                  const SizedBox(height: 5),
+                  // const Text(
+                  //   'APOLLO',
+                  //   style: TextStyle(
+                  //     fontFamily: 'Vanguard',
+                  //     fontSize: 43,
+                  //     fontWeight: FontWeight.w700,
+                  //     color: Color(0xFF11100B),
+                  //   ),
+                  // ),
+                  const SizedBox(height: 8),
                   const Text(
                     'Let’s get started',
                     style: TextStyle(
@@ -66,8 +71,8 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 65),
                   MyButton(
-                    onTap: () => signin(context),
-                    buttonText: 'Sign in',
+                    onTap: () => signup(context),
+                    buttonText: 'Sign up',
                     fontSize: 16,
                     buttoncolor: const Color(0xFF11100B),
                     buttonTextColor: const Color(0xFFEAE3D1),

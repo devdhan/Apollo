@@ -64,6 +64,10 @@ flutter:
     - assets/googlebtn_image.png
     - assets/blankcircle.png
     - assets/ion_log-out.png
+    - assets/APOLLO.png
+    - assets/science.png
+    - assets/physics.png
+    - assets/mathematics.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

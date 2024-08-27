@@ -154,7 +154,7 @@ class ChatTwo extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(15, 10, 165, 0),
+                    padding: const EdgeInsets.fromLTRB(15, 10, 165, 100),
                     child: Container(
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/components/my_textfield.dart';
-import 'package:tutorials/pages/verify_email.dart';
+import 'package:tutorials/pages/chat_one.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({super.key});
@@ -11,12 +11,11 @@ class SignUp extends StatelessWidget {
   final passwordController = TextEditingController();
   final confirmpasswordController = TextEditingController();
 
-  //sign user in method
   void verifyEmail(BuildContext context) {
     // Navigate to VerifyEmail page
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const VerifyEmail()),
+      MaterialPageRoute(builder: (context) => ChatOne()),
     );
   }
 

@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/components/my_button.dart';
+import 'package:tutorials/pages/guest_chat.dart';
 
 class GuestHomepage extends StatelessWidget {
   const GuestHomepage({super.key});
 
-  void chatguest() {}
+  void guestChat(BuildContext context) {
+    // Navigate to GuestChat
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => GuestChat()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +83,7 @@ class GuestHomepage extends StatelessWidget {
               //Continue Button
               MyButton(
                 fontSize: 16,
-                onTap: chatguest,
+                onTap: () => guestChat(context),
                 buttonText: 'Continue',
                 buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
                 buttonTextColor: const Color(0xFFEAE3D1),
