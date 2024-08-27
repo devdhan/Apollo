@@ -45,9 +45,9 @@ void showLogoutDialog(BuildContext context) {
                       child: Text(
                         'Nah, just kidding',
                         style: TextStyle(
-                          color: Color(0xFFEAE3D1),
-                          fontSize: 12,
-                        ),
+                            color: Color(0xFFEAE3D1),
+                            fontSize: 12,
+                            fontFamily: 'Montserrat'),
                       ),
                     ),
                   ),
@@ -76,9 +76,9 @@ void showLogoutDialog(BuildContext context) {
                       child: Text(
                         'Yes, log me out',
                         style: TextStyle(
-                          color: Color(0xFF11100B),
-                          fontSize: 12,
-                        ),
+                            color: Color(0xFF11100B),
+                            fontSize: 12,
+                            fontFamily: 'Montserrat'),
                       ),
                     ),
                   ),

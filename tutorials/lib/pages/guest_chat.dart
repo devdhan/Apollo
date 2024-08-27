@@ -111,6 +111,7 @@ class GuestChat extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
+                          Navigator.pop(context, true);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -244,9 +245,6 @@ class GuestChat extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: MyButton(
                     onTap: () {},
-                    // buttonImage: Image.asset(
-                    //   'assets/mathematics.png',
-                    // ),
                     buttonText: 'How do you solve quadratic equations?',
                     buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
                     buttonTextColor: const Color(0xFFEAE3D1),
@@ -273,7 +271,8 @@ class GuestChat extends StatelessWidget {
                 ),
               ),
             ),
-            // Bottom textfield
+
+            // BOTTOM TEXTFIELD
             Positioned(
               bottom: 15,
               left: 0,
@@ -321,12 +320,25 @@ class GuestChat extends StatelessWidget {
                           Container(
                             margin: const EdgeInsets.symmetric(horizontal: 8.0),
                             padding: const EdgeInsets.all(8.0),
-                            decoration: const BoxDecoration(
-                              color: Color(0xFF11100B),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: const Color(0xFFCACACA), width: 5),
+                              color: Colors.white,
                               shape: BoxShape.circle,
                             ),
-                            child: const Icon(Icons.mic_outlined,
-                                color: Color(0xFFEAE3D1)),
+                            child: Container(
+                              padding: const EdgeInsets.all(8.0),
+                              decoration: const BoxDecoration(
+                                color: Color(0xFF11100B),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Center(
+                                child: Icon(
+                                  Icons.mic_outlined,
+                                  color: Color(0xFFEAE3D1),
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
