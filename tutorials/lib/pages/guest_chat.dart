@@ -4,10 +4,35 @@ import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/pages/about_app.dart';
 import 'dart:math' as math;
 
-class GuestChat extends StatelessWidget {
-  GuestChat({super.key});
+class GuestChat extends StatefulWidget {
+  const GuestChat({super.key});
 
+  @override
+  _GuestChatState createState() => _GuestChatState();
+}
+
+class _GuestChatState extends State<GuestChat> {
   final messageController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+  bool _isTextFieldFocused = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Add a listener to the FocusNode
+    _focusNode.addListener(() {
+      setState(() {
+        _isTextFieldFocused = _focusNode.hasFocus;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    // Dispose of the FocusNode when the widget is removed
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   // Navigate to About page
   void about(BuildContext context) {
@@ -35,7 +60,7 @@ class GuestChat extends StatelessWidget {
               ),
             ],
           ),
-          //APPBAR
+          // APPBAR
           child: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -73,7 +98,7 @@ class GuestChat extends StatelessWidget {
           ),
         ),
       ),
-      //DRAWER
+      // DRAWER
       drawer: Drawer(
         child: Container(
           color: const Color(0xFFEAE3D1),
@@ -175,7 +200,7 @@ class GuestChat extends StatelessWidget {
           ),
         ),
       ),
-      //BODY
+      // BODY
       backgroundColor: const Color.fromRGBO(234, 227, 209, 1),
       body: SafeArea(
         child: Stack(
@@ -218,7 +243,7 @@ class GuestChat extends StatelessWidget {
                 ),
               ),
             ),
-            //Suggestion buttons
+            // Suggestion buttons
             Positioned(
               top: 340.0,
               left: 0,
@@ -253,7 +278,6 @@ class GuestChat extends StatelessWidget {
                 ),
               ),
             ),
-
             Positioned(
               top: 480.0,
               left: 0,
@@ -271,10 +295,9 @@ class GuestChat extends StatelessWidget {
                 ),
               ),
             ),
-
             // BOTTOM TEXTFIELD
             Positioned(
-              bottom: 15,
+              bottom: 0,
               left: 0,
               right: 0,
               child: Container(
@@ -293,6 +316,7 @@ class GuestChat extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: TextField(
                     controller: messageController,
+                    focusNode: _focusNode,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: const Color(0xFFFFFFFF),
@@ -315,31 +339,65 @@ class GuestChat extends StatelessWidget {
                         children: [
                           Transform.rotate(
                             angle: -45 * math.pi / 180,
-                            child: const Icon(Icons.attachment_outlined),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                            padding: const EdgeInsets.all(8.0),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: const Color(0xFFCACACA), width: 5),
-                              color: Colors.white,
-                              shape: BoxShape.circle,
+                            child: IconButton(
+                              icon: const Icon(Icons.attachment_outlined,
+                                  color: Color(0xFFCACACA)),
+                              onPressed: () {},
                             ),
-                            child: Container(
+                          ),
+                          //on focused the text field is too width adjust asap
+                          if (_isTextFieldFocused)
+                            Container(
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
                               padding: const EdgeInsets.all(8.0),
-                              decoration: const BoxDecoration(
-                                color: Color(0xFF11100B),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: const Color(0xFFCACACA), width: 5),
+                                color: Colors.white,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Center(
-                                child: Icon(
-                                  Icons.mic_outlined,
-                                  color: Color(0xFFEAE3D1),
+                              child: Container(
+                                padding: const EdgeInsets.all(8.0),
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFF11100B),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Center(
+                                  child: IconButton(
+                                    icon: const Icon(Icons.send,
+                                        color: Color(0xFFEAE3D1)),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ),
+                            )
+                          else
+                            Container(
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
+                              padding: const EdgeInsets.all(5.0),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: const Color(0xFFCACACA), width: 5),
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Container(
+                                padding: const EdgeInsets.all(10.0),
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFF11100B),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Center(
+                                  child: Icon(
+                                    Icons.mic_outlined,
+                                    color: Color(0xFFEAE3D1),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
                         ],
                       ),
                     ),

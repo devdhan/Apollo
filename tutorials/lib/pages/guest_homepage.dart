@@ -5,11 +5,11 @@ import 'package:tutorials/pages/guest_chat.dart';
 class GuestHomepage extends StatelessWidget {
   const GuestHomepage({super.key});
 
+  // Navigate to GuestChat
   void guestChat(BuildContext context) {
-    // Navigate to GuestChat
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => GuestChat()),
+      MaterialPageRoute(builder: (context) => const GuestChat()),
     );
   }
 
