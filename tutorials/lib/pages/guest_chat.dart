@@ -19,7 +19,6 @@ class _GuestChatState extends State<GuestChat> {
   @override
   void initState() {
     super.initState();
-    // Add a listener to the FocusNode
     _focusNode.addListener(() {
       setState(() {
         _isTextFieldFocused = _focusNode.hasFocus;
@@ -29,12 +28,10 @@ class _GuestChatState extends State<GuestChat> {
 
   @override
   void dispose() {
-    // Dispose of the FocusNode when the widget is removed
     _focusNode.dispose();
     super.dispose();
   }
 
-  // Navigate to About page
   void about(BuildContext context) {
     Navigator.push(
       context,
@@ -60,7 +57,6 @@ class _GuestChatState extends State<GuestChat> {
               ),
             ],
           ),
-          // APPBAR
           child: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -98,7 +94,6 @@ class _GuestChatState extends State<GuestChat> {
           ),
         ),
       ),
-      // DRAWER
       drawer: Drawer(
         child: Container(
           color: const Color(0xFFEAE3D1),
@@ -200,7 +195,6 @@ class _GuestChatState extends State<GuestChat> {
           ),
         ),
       ),
-      // BODY
       backgroundColor: const Color.fromRGBO(234, 227, 209, 1),
       body: SafeArea(
         child: Stack(
@@ -243,7 +237,6 @@ class _GuestChatState extends State<GuestChat> {
                 ),
               ),
             ),
-            // Suggestion buttons
             Positioned(
               top: 340.0,
               left: 0,
@@ -314,93 +307,96 @@ class _GuestChatState extends State<GuestChat> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: TextField(
-                    controller: messageController,
-                    focusNode: _focusNode,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: const Color(0xFFFFFFFF),
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFFFFFFFF)),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          style: const TextStyle(
+                            color: Color(0xAA000000),
+                            fontSize: 12,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: -0.41,
+                          ),
+                          controller: messageController,
+                          focusNode: _focusNode,
+                          decoration: InputDecoration(
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color(0xFFFFFFFF)),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color(0xFFE6E6E6)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                              ),
+                              hintText: 'Ask anything...',
+                              hintStyle: const TextStyle(
+                                fontFamily: 'Montserrat',
+                                color: Color(0xAA000000),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                              ),
+                              suffixIcon: Transform.rotate(
+                                angle: -45 * math.pi / 180,
+                                child: IconButton(
+                                  icon: const Icon(Icons.attachment_outlined),
+                                  onPressed: () {},
+                                ),
+                              )),
+                        ),
                       ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFFE6E6E6)),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      hintText: 'Ask anything...',
-                      hintStyle: const TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Color(0xAA000000),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                      ),
-                      suffixIcon: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Transform.rotate(
-                            angle: -45 * math.pi / 180,
-                            child: IconButton(
-                              icon: const Icon(Icons.attachment_outlined,
-                                  color: Color(0xFFCACACA)),
-                              onPressed: () {},
+                      const SizedBox(width: 5),
+                      // Icon Container
+                      if (_isTextFieldFocused)
+                        Container(
+                          padding: const EdgeInsets.all(5.5),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: const Color(0xFFCACACA), width: 4),
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.all(10.0),
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF11100B),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Center(
+                              child: IconButton(
+                                icon: const Icon(Icons.send,
+                                    color: Color(0xFFEAE3D1)),
+                                onPressed: () {},
+                              ),
                             ),
                           ),
-                          //on focused the text field is too width adjust asap
-                          if (_isTextFieldFocused)
-                            Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              padding: const EdgeInsets.all(8.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: const Color(0xFFCACACA), width: 5),
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Container(
-                                padding: const EdgeInsets.all(8.0),
-                                decoration: const BoxDecoration(
-                                  color: Color(0xFF11100B),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Center(
-                                  child: IconButton(
-                                    icon: const Icon(Icons.send,
-                                        color: Color(0xFFEAE3D1)),
-                                    onPressed: () {},
-                                  ),
-                                ),
-                              ),
-                            )
-                          else
-                            Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 8.0,
-                              ),
-                              padding: const EdgeInsets.all(5.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: const Color(0xFFCACACA), width: 5),
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Container(
-                                padding: const EdgeInsets.all(10.0),
-                                decoration: const BoxDecoration(
-                                  color: Color(0xFF11100B),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Center(
-                                  child: Icon(
-                                    Icons.mic_outlined,
-                                    color: Color(0xFFEAE3D1),
-                                  ),
-                                ),
+                        )
+                      else
+                        Container(
+                          padding: const EdgeInsets.all(5.5),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: const Color(0xFFCACACA), width: 4),
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.all(10.0),
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF11100B),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Center(
+                              child: Icon(
+                                Icons.mic_outlined,
+                                color: Color(0xFFEAE3D1),
                               ),
                             ),
-                        ],
-                      ),
-                    ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
               ),
