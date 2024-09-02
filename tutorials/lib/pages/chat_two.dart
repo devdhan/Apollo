@@ -1,13 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:tutorials/components/bottom_textfield.dart';
 import 'package:tutorials/components/custom_drawer.dart';
 import 'package:tutorials/pages/chat_one.dart';
 import 'package:tutorials/pages/about_app.dart';
-import 'dart:math' as math;
 
-class ChatTwo extends StatelessWidget {
+class ChatTwo extends StatefulWidget {
   ChatTwo({super.key});
 
+  @override
+  _ChatTwoState createState() => _ChatTwoState();
+}
+
+class _ChatTwoState extends State<ChatTwo> {
   final messageController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   void about(BuildContext context) {
     Navigator.push(
@@ -182,64 +202,12 @@ class ChatTwo extends StatelessWidget {
           ),
           // Bottom textfield
           Positioned(
-            bottom: 15,
+            bottom: 0,
             left: 0,
             right: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    spreadRadius: 3,
-                    blurRadius: 30,
-                    offset: const Offset(0, 0.5),
-                  ),
-                ],
-                color: const Color(0xFFFFFFFF),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: TextField(
-                  controller: messageController,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: const Color(0xFFFFFFFF),
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFFFFFFF)),
-                    ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFE6E6E6)),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    hintText: 'Ask anything...',
-                    hintStyle: const TextStyle(
-                      fontFamily: 'Montserrat',
-                      color: Color(0xAA000000),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12,
-                    ),
-                    suffixIcon: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Transform.rotate(
-                          angle: -45 * math.pi / 180,
-                          child: const Icon(Icons.attachment_outlined),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                          padding: const EdgeInsets.all(8.0),
-                          decoration: const BoxDecoration(
-                            color: Color(0xFF11100B),
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(Icons.mic_outlined,
-                              color: Color(0xFFEAE3D1)),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+            child: BottomTextField(
+              messageController: messageController,
+              focusNode: _focusNode,
             ),
           ),
         ],
