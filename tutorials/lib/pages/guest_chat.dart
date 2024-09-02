@@ -246,11 +246,17 @@ class _GuestChatState extends State<GuestChat> {
                     buttonText: 'Can you explain the theory of evolution?',
                     buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
                     buttonTextColor: const Color(0xFFEAE3D1),
-                    fontSize: 12,
+                    fontSize: 13,
+                    buttonImage: Image.asset(
+                      'assets/science.png',
+                      height: 18,
+                      width: 18,
+                    ),
                   ),
                 ),
               ),
             ),
+
             Positioned(
               top: 410.0,
               left: 0,
@@ -263,7 +269,12 @@ class _GuestChatState extends State<GuestChat> {
                     buttonText: 'How do you solve quadratic equations?',
                     buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
                     buttonTextColor: const Color(0xFFEAE3D1),
-                    fontSize: 12,
+                    fontSize: 13,
+                    buttonImage: Image.asset(
+                      'assets/mathematics.png',
+                      height: 18,
+                      width: 18,
+                    ),
                   ),
                 ),
               ),
@@ -280,12 +291,17 @@ class _GuestChatState extends State<GuestChat> {
                     buttonText: 'What are Newton’s three laws of motion?',
                     buttoncolor: const Color(0xFF11100B),
                     buttonTextColor: const Color(0xFFEAE3D1),
-                    fontSize: 12,
+                    fontSize: 13,
+                    buttonImage: Image.asset(
+                      'assets/physics.png',
+                      height: 18,
+                      width: 18,
+                    ),
                   ),
                 ),
               ),
             ),
-            // Use BottomTextField widget
+            //BottomTextField widget
             Positioned(
               bottom: 0,
               left: 0,

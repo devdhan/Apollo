@@ -124,7 +124,8 @@ class _BottomTextFieldState extends State<BottomTextField> {
                     color: Color(0xFF11100B),
                     shape: BoxShape.circle,
                   ),
-                  child: const Center(
+                  child: const Align(
+                    alignment: Alignment.center,
                     child: Icon(
                       Icons.mic_outlined,
                       color: Color(0xFFEAE3D1),
