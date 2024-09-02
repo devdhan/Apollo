@@ -79,7 +79,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   MyButton(
-                    onTap: () => signup(context),
+                    onTap: () => signin(context),
                     buttonText: 'Continue with an account',
                     fontSize: 16,
                     buttoncolor: const Color(0x00D9D9D9),

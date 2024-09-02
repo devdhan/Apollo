@@ -1,14 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:tutorials/components/bottom_textfield.dart';
 import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/pages/about_app.dart';
 import 'package:tutorials/pages/chat_two.dart';
 import 'package:tutorials/components/custom_drawer.dart';
-import 'dart:math' as math;
 
-class ChatOne extends StatelessWidget {
+class ChatOne extends StatefulWidget {
   ChatOne({super.key});
 
+  @override
+  _ChatOneState createState() => _ChatOneState();
+}
+
+class _ChatOneState extends State<ChatOne> {
   final messageController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   // Navigate to About page
   void about(BuildContext context) {
@@ -150,11 +170,17 @@ class ChatOne extends StatelessWidget {
                     buttonText: 'Can you explain the theory of evolution?',
                     buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
                     buttonTextColor: const Color(0xFFEAE3D1),
-                    fontSize: 12,
+                    fontSize: 13,
+                    buttonImage: Image.asset(
+                      'assets/science.png',
+                      height: 18,
+                      width: 18,
+                    ),
                   ),
                 ),
               ),
             ),
+
             Positioned(
               top: 410.0,
               left: 0,
@@ -167,7 +193,12 @@ class ChatOne extends StatelessWidget {
                     buttonText: 'How do you solve quadratic equations?',
                     buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
                     buttonTextColor: const Color(0xFFEAE3D1),
-                    fontSize: 12,
+                    fontSize: 13,
+                    buttonImage: Image.asset(
+                      'assets/mathematics.png',
+                      height: 18,
+                      width: 18,
+                    ),
                   ),
                 ),
               ),
@@ -184,7 +215,12 @@ class ChatOne extends StatelessWidget {
                     buttonText: 'What are Newton’s three laws of motion?',
                     buttoncolor: const Color(0xFF11100B),
                     buttonTextColor: const Color(0xFFEAE3D1),
-                    fontSize: 12,
+                    fontSize: 13,
+                    buttonImage: Image.asset(
+                      'assets/physics.png',
+                      height: 18,
+                      width: 18,
+                    ),
                   ),
                 ),
               ),
@@ -194,49 +230,9 @@ class ChatOne extends StatelessWidget {
               bottom: 0,
               left: 0,
               right: 0,
-              child: Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      spreadRadius: 3,
-                      blurRadius: 30,
-                      offset: const Offset(0, 0.5),
-                    ),
-                  ],
-                  color: const Color(0xFFFFFFFF),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: TextField(
-                    controller: messageController,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: const Color(0xFFFFFFFF),
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFFFFFFFF)),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFFE6E6E6)),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      hintText: 'Ask anything...',
-                      hintStyle: const TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Color(0xAA000000),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                        letterSpacing: -0.41,
-                      ),
-                      suffixIcon: Transform.rotate(
-                        angle: -45 * math.pi / 180,
-                        child: const Icon(Icons.attachment_outlined),
-                      ),
-                      iconColor: const Color(0xFFCACACA),
-                      focusColor: const Color(0xFFCACACA),
-                    ),
-                  ),
-                ),
+              child: BottomTextField(
+                messageController: messageController,
+                focusNode: _focusNode,
               ),
             ),
           ],
