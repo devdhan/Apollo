@@ -45,51 +45,58 @@ class _BottomTextFieldState extends State<BottomTextField> {
         color: const Color(0xFFFFFFFF),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+        padding: const EdgeInsets.only(left: 5.0, right: 12.0),
         child: Row(
           children: [
             Expanded(
-              child: TextField(
-                style: const TextStyle(
-                  color: Color(0xAA000000),
-                  fontSize: 12,
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.41,
-                ),
-                controller: widget.messageController,
-                focusNode: widget.focusNode,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: _isTextFieldFocused
-                      ? const Color(0xFFE6E6E6)
-                      : Colors.transparent,
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFFFFFFF)),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFE6E6E6)),
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  hintText: 'Ask anything...',
-                  hintStyle: const TextStyle(
-                    fontFamily: 'Montserrat',
+              child: Container(
+                height: 45,
+                child: TextField(
+                  style: const TextStyle(
                     color: Color(0xAA000000),
-                    fontWeight: FontWeight.w600,
                     fontSize: 12,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: -0.41,
                   ),
-                  suffixIcon: Transform.rotate(
-                    angle: -45 * math.pi / 180,
-                    child: IconButton(
-                      icon: const Icon(Icons.attachment_outlined),
-                      onPressed: () {},
+                  controller: widget.messageController,
+                  focusNode: widget.focusNode,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: _isTextFieldFocused
+                        ? const Color(0xFFE6E6E6)
+                        : Colors.transparent,
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFFFFFFFF)),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFFE6E6E6)),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    hintText: 'Ask anything...',
+                    hintStyle: const TextStyle(
+                      fontFamily: 'Montserrat',
+                      color: Color(0xAA000000),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
+                    ),
+                    suffixIcon: Transform.rotate(
+                      angle: -45 * math.pi / 180,
+                      child: IconButton(
+                        icon: const Icon(Icons.attachment_outlined),
+                        onPressed: () {},
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
+            const SizedBox(width: 5.0),
             if (_isTextFieldFocused)
               Container(
+                width: 55,
+                height: 55,
                 padding: const EdgeInsets.all(5.5),
                 decoration: BoxDecoration(
                   border: Border.all(color: const Color(0xFFCACACA), width: 4),
@@ -97,7 +104,6 @@ class _BottomTextFieldState extends State<BottomTextField> {
                   shape: BoxShape.circle,
                 ),
                 child: Container(
-                  padding: const EdgeInsets.all(10.0),
                   decoration: const BoxDecoration(
                     color: Color(0xFF11100B),
                     shape: BoxShape.circle,
@@ -106,12 +112,15 @@ class _BottomTextFieldState extends State<BottomTextField> {
                     child: IconButton(
                       icon: const Icon(Icons.send, color: Color(0xFFEAE3D1)),
                       onPressed: () {},
+                      iconSize: 20,
                     ),
                   ),
                 ),
               )
             else
               Container(
+                width: 55,
+                height: 55,
                 padding: const EdgeInsets.all(5.5),
                 decoration: BoxDecoration(
                   border: Border.all(color: const Color(0xFFCACACA), width: 4),
@@ -119,16 +128,15 @@ class _BottomTextFieldState extends State<BottomTextField> {
                   shape: BoxShape.circle,
                 ),
                 child: Container(
-                  padding: const EdgeInsets.all(10.0),
                   decoration: const BoxDecoration(
                     color: Color(0xFF11100B),
                     shape: BoxShape.circle,
                   ),
-                  child: const Align(
-                    alignment: Alignment.center,
+                  child: const Center(
                     child: Icon(
                       Icons.mic_outlined,
                       color: Color(0xFFEAE3D1),
+                      size: 25,
                     ),
                   ),
                 ),
