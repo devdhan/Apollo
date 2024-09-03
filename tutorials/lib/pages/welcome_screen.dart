@@ -10,7 +10,7 @@ class WelcomeScreen extends StatelessWidget {
   void signino() {}
 
   void signin(BuildContext context) {
-    // Navigate to Signin page
+    // Navigate to SignIn page
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => SignIn()),
@@ -18,7 +18,7 @@ class WelcomeScreen extends StatelessWidget {
   }
 
   void signup(BuildContext context) {
-    // Navigate to Signup page
+    // Navigate to SignUp page
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => SignUp()),
@@ -45,20 +45,15 @@ class WelcomeScreen extends StatelessWidget {
               Column(
                 children: [
                   const SizedBox(height: 140),
-                  Image.asset(
-                    'assets/APOLLO.png',
-                    height: 52,
-                    width: 99,
+                  const Text(
+                    'APOLLO',
+                    style: TextStyle(
+                      fontFamily: 'Vanguard',
+                      fontSize: 55,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF11100B),
+                    ),
                   ),
-                  // const Text(
-                  //   'APOLLO',
-                  //   style: TextStyle(
-                  //     fontFamily: 'Vanguard',
-                  //     fontSize: 43,
-                  //     fontWeight: FontWeight.w700,
-                  //     color: Color(0xFF11100B),
-                  //   ),
-                  // ),
                   const SizedBox(height: 8),
                   const Text(
                     'Let’s get started',
@@ -82,7 +77,7 @@ class WelcomeScreen extends StatelessWidget {
                     onTap: () => signin(context),
                     buttonText: 'Continue with an account',
                     fontSize: 16,
-                    buttoncolor: const Color(0x00D9D9D9),
+                    buttoncolor: const Color(0xFFEAE3D1),
                     buttonTextColor: const Color(0xFF11100B),
                   ),
                   const SizedBox(height: 25),
@@ -99,7 +94,7 @@ class WelcomeScreen extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 10.0),
                           child: Text(
-                            'or',
+                            'Or',
                             style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 16,
@@ -120,9 +115,9 @@ class WelcomeScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   MyButton(
                     onTap: signino,
-                    buttonText: 'Continue with gmail',
+                    buttonText: 'Continue with Gmail',
                     fontSize: 16,
-                    buttoncolor: const Color(0x00D9D9D9),
+                    buttoncolor: Color(0xFFEAE3D1),
                     buttonTextColor: const Color(0xFF11100B),
                     buttonImage: Image.asset(
                       'assets/googlebtn_image.png',

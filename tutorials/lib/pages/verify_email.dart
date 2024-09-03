@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/components/my_button.dart';
-import 'package:tutorials/pages/sign_in.dart';
+import 'package:tutorials/pages/chat_one.dart';
 
 class VerifyEmail extends StatelessWidget {
   const VerifyEmail({super.key});
 
-  void signIn(BuildContext context) {
+  void chat(BuildContext context) {
     // Navigate to VerifyEmail page
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SignIn()),
+      MaterialPageRoute(builder: (context) => ChatOne()),
     );
   }
 
@@ -97,7 +97,7 @@ class VerifyEmail extends StatelessWidget {
                 height: 30,
               ),
               MyButton(
-                onTap: () => signIn(context),
+                onTap: () => chat(context),
                 buttonText: 'Confirm email',
                 fontSize: 16,
                 buttoncolor: const Color.fromRGBO(17, 16, 11, 1),

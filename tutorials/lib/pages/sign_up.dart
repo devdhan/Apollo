@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/components/my_textfield.dart';
-import 'package:tutorials/pages/chat_one.dart';
+import 'package:tutorials/pages/verify_email.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({super.key});
@@ -12,10 +12,9 @@ class SignUp extends StatelessWidget {
   final confirmpasswordController = TextEditingController();
 
   void verifyEmail(BuildContext context) {
-    Navigator.pushAndRemoveUntil(
+    Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => ChatOne()),
-      (Route<dynamic> route) => false, // Remove all routes
+      MaterialPageRoute(builder: (context) => const VerifyEmail()),
     );
   }
 
