@@ -56,7 +56,7 @@ class SearchHistory extends StatelessWidget {
             children: [
               Container(
                 padding:
-                    const EdgeInsets.only(left: 15.0, top: 45.0, right: 15.0),
+                    const EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   decoration: BoxDecoration(

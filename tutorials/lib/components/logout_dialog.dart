@@ -55,12 +55,13 @@ void showLogoutDialog(BuildContext context) {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pop(); // Close the dialog
-                  Navigator.pushReplacement(
+                  Navigator.of(context).pop();
+                  Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const WelcomeScreen(),
                     ),
+                    (Route<dynamic> route) => false, // Remove all routes
                   ); // Navigate to WelcomeScreen
                 },
                 child: SizedBox(

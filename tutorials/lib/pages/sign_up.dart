@@ -6,16 +6,16 @@ import 'package:tutorials/pages/chat_one.dart';
 class SignUp extends StatelessWidget {
   SignUp({super.key});
 
-//text editing controller
+  // Text editing controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmpasswordController = TextEditingController();
 
   void verifyEmail(BuildContext context) {
-    // Navigate to VerifyEmail page
-    Navigator.push(
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => ChatOne()),
+      (Route<dynamic> route) => false, // Remove all routes
     );
   }
 
@@ -44,12 +44,12 @@ class SignUp extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Center(
             child: Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
+              // Main axis alignment
               children: [
                 const SizedBox(
                   height: 60,
                 ),
-                //Sign Up Text
+                // Sign Up Text
                 const Text(
                   'Sign up',
                   style: TextStyle(
@@ -59,7 +59,7 @@ class SignUp extends StatelessWidget {
                       fontWeight: FontWeight.w700),
                 ),
 
-                //Welcome back text
+                // Welcome back text
                 const SizedBox(
                   height: 3,
                 ),
@@ -85,7 +85,7 @@ class SignUp extends StatelessWidget {
                   ],
                 ),
 
-                //email textfield
+                // Email text field
                 const SizedBox(
                   height: 50,
                 ),
@@ -95,7 +95,7 @@ class SignUp extends StatelessWidget {
                   obscureText: false,
                 ),
 
-                //password textfield
+                // Password text field
                 const SizedBox(
                   height: 25,
                 ),
@@ -105,7 +105,7 @@ class SignUp extends StatelessWidget {
                   obscureText: true,
                 ),
 
-                //confirm password textfield
+                // Confirm password text field
                 const SizedBox(
                   height: 25,
                 ),
@@ -115,7 +115,7 @@ class SignUp extends StatelessWidget {
                   obscureText: true,
                 ),
 
-                //sign in button
+                // Sign in button
                 const SizedBox(
                   height: 30,
                 ),

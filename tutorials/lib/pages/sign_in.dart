@@ -21,9 +21,10 @@ class SignIn extends StatelessWidget {
 
   void chat(BuildContext context) {
     // Navigate to Chat page
-    Navigator.push(
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => ChatOne()),
+      (Route<dynamic> route) => false,
     );
   }
 

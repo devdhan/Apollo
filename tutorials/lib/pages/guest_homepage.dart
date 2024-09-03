@@ -7,9 +7,10 @@ class GuestHomepage extends StatelessWidget {
 
   // Navigate to GuestChat
   void guestChat(BuildContext context) {
-    Navigator.push(
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => const GuestChat()),
+      (Route<dynamic> route) => false,
     );
   }
 
