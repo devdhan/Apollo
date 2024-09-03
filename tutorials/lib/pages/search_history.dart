@@ -55,9 +55,8 @@ class SearchHistory extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
-                height: 90,
                 padding:
-                    const EdgeInsets.only(left: 15.0, top: 50.0, right: 15.0),
+                    const EdgeInsets.only(left: 15.0, top: 45.0, right: 15.0),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   decoration: BoxDecoration(
@@ -66,7 +65,7 @@ class SearchHistory extends StatelessWidget {
                   ),
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: 'Search...',
+                      hintText: 'Search',
                       hintStyle: TextStyle(color: Colors.grey[500]),
                       prefixIcon: const Icon(Icons.search, color: Colors.white),
                       border: InputBorder.none,
