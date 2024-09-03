@@ -55,13 +55,14 @@ class SearchHistory extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
+                height: 90,
                 padding:
                     const EdgeInsets.only(left: 15.0, top: 50.0, right: 15.0),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   decoration: BoxDecoration(
                     color: Colors.black,
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: TextField(
                     decoration: InputDecoration(
@@ -75,7 +76,7 @@ class SearchHistory extends StatelessWidget {
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.only(left: 10.0, top: 30.0),
+                padding: EdgeInsets.only(left: 20.0, top: 30.0),
                 child: Text(
                   'Today - Tuesday, July 9, 2024',
                   style: TextStyle(
@@ -126,7 +127,7 @@ class SearchHistory extends StatelessWidget {
                       ),
                     ),
                     const Padding(
-                      padding: EdgeInsets.only(left: 10.0, top: 20.0),
+                      padding: EdgeInsets.only(left: 20.0, top: 20.0),
                       child: Text(
                         'Sunday, July 7, 2024',
                         style: TextStyle(
@@ -242,7 +243,7 @@ class SearchHistory extends StatelessWidget {
                       ),
                     ),
                     const Padding(
-                      padding: EdgeInsets.only(left: 10.0, top: 20.0),
+                      padding: EdgeInsets.only(left: 20.0, top: 20.0),
                       child: Text(
                         'Sunday, July 7, 2024',
                         style: TextStyle(
