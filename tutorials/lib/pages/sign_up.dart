@@ -94,7 +94,6 @@ class SignUp extends StatelessWidget {
                   obscureText: false,
                 ),
 
-                // Password text field
                 const SizedBox(
                   height: 25,
                 ),
@@ -102,9 +101,9 @@ class SignUp extends StatelessWidget {
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
+                  isPassword: true,
                 ),
 
-                // Confirm password text field
                 const SizedBox(
                   height: 25,
                 ),
@@ -112,6 +111,7 @@ class SignUp extends StatelessWidget {
                   controller: confirmpasswordController,
                   hintText: 'Confirm Password',
                   obscureText: true,
+                  isPassword: true,
                 ),
 
                 // Sign in button
