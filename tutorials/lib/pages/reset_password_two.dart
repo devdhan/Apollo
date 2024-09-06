@@ -73,6 +73,7 @@ class ResetPasswordTwo extends StatelessWidget {
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
+                  isPassword: true,
                 ),
                 const SizedBox(
                   height: 15,
@@ -81,6 +82,7 @@ class ResetPasswordTwo extends StatelessWidget {
                   controller: confirmpasswordController,
                   hintText: 'Confirm Password',
                   obscureText: true,
+                  isPassword: true,
                 ),
                 const SizedBox(
                   height: 30,

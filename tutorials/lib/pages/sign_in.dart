@@ -107,6 +107,7 @@ class SignIn extends StatelessWidget {
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
+                  isPassword: true,
                 ),
 
                 // Forgot password,
