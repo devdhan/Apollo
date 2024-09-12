@@ -257,7 +257,7 @@ class _GuestChatState extends State<GuestChat> {
             ),
 
             Positioned(
-              top: 420.0,
+              top: 430.0,
               left: 0,
               right: 0,
               child: Center(
@@ -277,7 +277,7 @@ class _GuestChatState extends State<GuestChat> {
               ),
             ),
             Positioned(
-              top: 500.0,
+              top: 525.0,
               left: 0,
               right: 0,
               child: Center(
