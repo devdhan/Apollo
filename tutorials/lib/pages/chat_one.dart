@@ -3,6 +3,7 @@ import 'package:tutorials/components/bottom_textfield.dart';
 import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/pages/about_app.dart';
 import 'package:tutorials/components/custom_drawer.dart';
+import 'package:tutorials/pages/chat_two.dart';
 import 'package:tutorials/pages/search_history.dart';
 
 class ChatOne extends StatefulWidget {
@@ -39,10 +40,10 @@ class _ChatOneState extends State<ChatOne> {
   }
 
   // Navigate to Search History
-  void searchHistory(BuildContext context) {
+  void chatTwo(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const SearchHistory()),
+      MaterialPageRoute(builder: (context) => ChatTwo()),
     );
   }
 
@@ -103,7 +104,7 @@ class _ChatOneState extends State<ChatOne> {
               Padding(
                 padding: const EdgeInsets.only(right: 20.0),
                 child: IconButton(
-                  onPressed: () => searchHistory(context),
+                  onPressed: () => chatTwo(context),
                   icon: const Icon(Icons.history),
                   color: const Color(0xFF000000),
                 ),

@@ -140,7 +140,7 @@ class _ChatTwoState extends State<ChatTwo> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(165, 20, 15, 0),
+                    padding: const EdgeInsets.fromLTRB(265, 20, 15, 0),
                     child: Container(
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
@@ -152,7 +152,7 @@ class _ChatTwoState extends State<ChatTwo> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 14.0, vertical: 10.0),
                         child: Text(
-                          'Explain the theory of evolution in details and give various examples',
+                          'How to write my exam',
                           style: TextStyle(
                               fontSize: 10,
                               fontFamily: 'Montserrat',
@@ -184,7 +184,7 @@ class _ChatTwoState extends State<ChatTwo> {
                           color: Color(0xFFFFFFFF)),
                       child: const Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 14.0, vertical: 10.0),
+                            horizontal: 10.0, vertical: 10.0),
                         child: Text(
                           'To write your exam effectively, start by preparing thoroughly with regular study and practice of past papers. Ensure you understand the exam format and gather all necessary materials. On exam day, manage your time by reading instructions carefully, starting with easier questions, and allocating time for each section. Use elimination for multiple choice questions, be concise in short answers, and outline essays before writing. Review your work for errors, completeness, and clarity. For objective exams, read all options; for subjective exams, support arguments with evidence; for problem-solving exams, show all work and double-check calculations. Post-exam, reflect on your performance to improve for next time.',
                           style: TextStyle(
