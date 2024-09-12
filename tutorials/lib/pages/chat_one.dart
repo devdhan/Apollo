@@ -165,16 +165,15 @@ class _ChatOneState extends State<ChatOne> {
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: MyButton(
-                    onTap: () {},
-                    buttonText: 'Can you explain the theory of evolution?',
-                    buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
-                    buttonTextColor: const Color(0xFFEAE3D1),
-                    fontSize: 13,
-                    buttonImage: Image.asset(
-                      'assets/science.png',
-                      height: 18,
-                      width: 18,
+                  child: SizedBox(
+                    height: 68,
+                    child: MyButton(
+                      onTap: () {},
+                      buttonText:
+                          'Which universities can I go in Lagos state, Nigeria?',
+                      buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
+                      buttonTextColor: const Color(0xFFEAE3D1),
+                      fontSize: 13,
                     ),
                   ),
                 ),
@@ -182,44 +181,41 @@ class _ChatOneState extends State<ChatOne> {
             ),
 
             Positioned(
-              top: 410.0,
+              top: 420.0,
               left: 0,
               right: 0,
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: MyButton(
-                    onTap: () {},
-                    buttonText: 'How do you solve quadratic equations?',
-                    buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
-                    buttonTextColor: const Color(0xFFEAE3D1),
-                    fontSize: 13,
-                    buttonImage: Image.asset(
-                      'assets/mathematics.png',
-                      height: 18,
-                      width: 18,
+                  child: SizedBox(
+                    height: 68,
+                    child: MyButton(
+                      onTap: () {},
+                      buttonText: 'What is the cut-off mark for Jamb?',
+                      buttoncolor: const Color(0xFF11100B),
+                      buttonTextColor: const Color(0xFFEAE3D1),
+                      fontSize: 13,
                     ),
                   ),
                 ),
               ),
             ),
             Positioned(
-              top: 480.0,
+              top: 500.0,
               left: 0,
               right: 0,
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: MyButton(
-                    onTap: () {},
-                    buttonText: 'What are Newton’s three laws of motion?',
-                    buttoncolor: const Color(0xFF11100B),
-                    buttonTextColor: const Color(0xFFEAE3D1),
-                    fontSize: 13,
-                    buttonImage: Image.asset(
-                      'assets/physics.png',
-                      height: 18,
-                      width: 18,
+                  child: SizedBox(
+                    height: 68,
+                    child: MyButton(
+                      onTap: () {},
+                      buttonText:
+                          'What is the WAEC subject combination for computer science',
+                      buttoncolor: const Color(0xFF11100B),
+                      buttonTextColor: const Color(0xFFEAE3D1),
+                      fontSize: 13,
                     ),
                   ),
                 ),

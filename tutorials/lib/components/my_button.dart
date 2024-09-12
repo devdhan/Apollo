@@ -50,7 +50,7 @@ class MyButton extends StatelessWidget {
                           fontSize: fontSize,
                           fontWeight: FontWeight.w500,
                         ),
-                        overflow: TextOverflow.ellipsis, // Handle overflow
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ],
@@ -63,7 +63,7 @@ class MyButton extends StatelessWidget {
                     fontSize: fontSize,
                     fontWeight: FontWeight.w500,
                   ),
-                  overflow: TextOverflow.ellipsis, // Handle overflow
+                  textAlign: TextAlign.center,
                 ),
         ),
       ),
