@@ -20,11 +20,27 @@ class MyTextfield extends StatefulWidget {
 
 class _MyTextfieldState extends State<MyTextfield> {
   late bool _obscureText;
+  bool _hasText = false;
 
   @override
   void initState() {
     super.initState();
     _obscureText = widget.obscureText;
+
+    widget.controller.addListener(_checkText);
+  }
+
+  void _checkText() {
+    setState(() {
+      _hasText = widget.controller.text.isNotEmpty;
+    });
+  }
+
+  @override
+  void dispose() {
+    // Remove listener when disposing
+    widget.controller.removeListener(_checkText);
+    super.dispose();
   }
 
   @override
@@ -48,11 +64,11 @@ class _MyTextfieldState extends State<MyTextfield> {
             fontWeight: FontWeight.w500,
             fontSize: 15,
           ),
-          suffixIcon: widget.isPassword
+          suffixIcon: widget.isPassword && _hasText
               ? IconButton(
                   icon: Icon(
                     _obscureText ? Icons.visibility_off : Icons.visibility,
-                    color: Color(0x8F000000),
+                    color: const Color(0xFF11100B),
                   ),
                   onPressed: () {
                     setState(() {
