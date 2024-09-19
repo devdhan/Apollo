@@ -35,7 +35,7 @@ class Profile extends StatelessWidget {
                 ),
               ),
               title: const Text(
-                'About app',
+                'Profile',
                 style: TextStyle(
                   fontSize: 18,
                   fontFamily: 'Montserrat',
