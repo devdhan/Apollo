@@ -31,6 +31,7 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
+  // Function to sign up a user
   Future<void> signUpUser(BuildContext context) async {
     final String email = emailController.text;
     final String password = passwordController.text;
@@ -46,10 +47,15 @@ class _SignUpState extends State<SignUp> {
     // Validate email and password fields
     if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
       setState(() {
-        if (email.isEmpty) emailError = 'Email cannot be empty';
-        if (password.isEmpty) passwordError = 'Password cannot be empty';
-        if (confirmPassword.isEmpty)
-          confirmPasswordError = 'Confirm password cannot be empty';
+        if (email.isEmpty) {
+          emailError = '*Email cannot be empty*';
+        }
+        if (password.isEmpty) {
+          passwordError = '*Password cannot be empty*';
+        }
+        if (confirmPassword.isEmpty) {
+          confirmPasswordError = '*Confirm password cannot be empty*';
+        }
       });
       return;
     }
@@ -57,83 +63,53 @@ class _SignUpState extends State<SignUp> {
     // Check if password and confirm password match
     if (password != confirmPassword) {
       setState(() {
-        confirmPasswordError = 'Passwords do not match';
+        confirmPasswordError = '*Passwords do not match*';
       });
       return;
     }
 
-    // Simulate successful signup (skip the actual API call for testing)
-    print("Simulating successful signup with email: $email");
-    verifyEmail(context); // Proceed to email verification step
+    try {
+      final url = Uri.parse('{{server_v1_url}}/user/signup');
+
+      // Prepare the request body
+      final Map<String, dynamic> body = {
+        'email': email,
+        'password': password,
+      };
+
+      // Send a POST request to the server
+      final response = await http.post(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(body),
+      );
+
+      // Handle response
+      if (response.statusCode == 201) {
+        // Success response: user created
+        final responseData = jsonDecode(response.body);
+        if (responseData['status'] == true) {
+          // Proceed to verify email page
+          verifyEmail(context);
+        }
+      } else if (response.statusCode == 409) {
+        // Conflict response: Email already exists
+        setState(() {
+          emailError = 'Email already exists';
+        });
+      } else {
+        setState(() {
+          emailError = 'Failed to sign up: ${response.body}';
+        });
+      }
+    } catch (e) {
+      setState(() {
+        emailError = 'An error occurred: $e';
+      });
+    }
   }
-
-  // Function to sign up a user
-  // Future<void> signUpUser(BuildContext context) async {
-  //   final String email = emailController.text;
-  //   final String password = passwordController.text;
-  //   final String confirmPassword = confirmpasswordController.text;
-
-  //   // Reset error messages
-  //   setState(() {
-  //     emailError = '';
-  //     passwordError = '';
-  //     confirmPasswordError = '';
-  //   });
-
-  //   // Validate email and password fields
-  //   if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
-  //     setState(() {
-  //       if (email.isEmpty) emailError = 'Email cannot be empty';
-  //       if (password.isEmpty) passwordError = 'Password cannot be empty';
-  //       if (confirmPassword.isEmpty) confirmPasswordError = 'Confirm password cannot be empty';
-  //     });
-  //     return;
-  //   }
-
-  //   // Check if password and confirm password match
-  //   if (password != confirmPassword) {
-  //     setState(() {
-  //       confirmPasswordError = 'Passwords do not match';
-  //     });
-  //     return;
-  //   }
-
-  //   try {
-  //     final url = Uri.parse('https://your-api-url.com/user/signup');
-
-  //     // Prepare the request body
-  //     final Map<String, dynamic> body = {
-  //       'email': email,
-  //       'password': password,
-  //     };
-
-  //     // Send a POST request to the server
-  //     final response = await http.post(
-  //       url,
-  //       headers: <String, String>{
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: jsonEncode(body),
-  //     );
-
-  //     if (response.statusCode == 201) {
-  //       // If the user is successfully created, proceed to verify email page
-  //       verifyEmail(context);
-  //     } else if (response.statusCode == 409) {
-  //       setState(() {
-  //         emailError = 'User already exists';
-  //       });
-  //     } else {
-  //       setState(() {
-  //         emailError = 'Failed to sign up: ${response.body}';
-  //       });
-  //     }
-  //   } catch (e) {
-  //     setState(() {
-  //       emailError = 'An error occurred: $e';
-  //     });
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
