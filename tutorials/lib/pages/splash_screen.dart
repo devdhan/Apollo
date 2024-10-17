@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _animation = Tween<Offset>(
       begin: Offset.zero,
-      end: Offset(0.0, -2.0),
+      end: const Offset(0.0, -2.0),
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     // Delay for 3 seconds, then start the animation and navigate to WelcomeScreen

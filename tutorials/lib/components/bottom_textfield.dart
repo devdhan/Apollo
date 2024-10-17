@@ -49,7 +49,7 @@ class _BottomTextFieldState extends State<BottomTextField> {
         child: Row(
           children: [
             Expanded(
-              child: Container(
+              child: SizedBox(
                 height: 45,
                 child: TextField(
                   style: const TextStyle(

@@ -5,7 +5,7 @@ import 'package:tutorials/pages/chat_one.dart';
 import 'package:tutorials/pages/about_app.dart';
 
 class ChatTwo extends StatefulWidget {
-  ChatTwo({super.key});
+  const ChatTwo({super.key});
 
   @override
   _ChatTwoState createState() => _ChatTwoState();

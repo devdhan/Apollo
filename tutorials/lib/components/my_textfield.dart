@@ -7,12 +7,12 @@ class MyTextfield extends StatefulWidget {
   final bool isPassword;
 
   const MyTextfield({
-    Key? key,
+    super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
     this.isPassword = false,
-  }) : super(key: key);
+  });
 
   @override
   _MyTextfieldState createState() => _MyTextfieldState();

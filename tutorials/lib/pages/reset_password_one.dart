@@ -11,7 +11,7 @@ class ResetPasswordOne extends StatelessWidget {
   void Otpscreen(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => OtpScreen()),
+      MaterialPageRoute(builder: (context) => const OtpScreen()),
     );
   }
 

@@ -1,22 +1,139 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/components/my_textfield.dart';
 import 'package:tutorials/pages/verify_email.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   SignUp({super.key});
 
+  @override
+  _SignUpState createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
   // Text editing controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmpasswordController = TextEditingController();
 
+  // Error message variables
+  String emailError = '';
+  String passwordError = '';
+  String confirmPasswordError = '';
+
+  // Function to verify email (navigate to another page)
   void verifyEmail(BuildContext context) {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const VerifyEmail()),
     );
   }
+
+  Future<void> signUpUser(BuildContext context) async {
+    final String email = emailController.text;
+    final String password = passwordController.text;
+    final String confirmPassword = confirmpasswordController.text;
+
+    // Reset error messages
+    setState(() {
+      emailError = '';
+      passwordError = '';
+      confirmPasswordError = '';
+    });
+
+    // Validate email and password fields
+    if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+      setState(() {
+        if (email.isEmpty) emailError = 'Email cannot be empty';
+        if (password.isEmpty) passwordError = 'Password cannot be empty';
+        if (confirmPassword.isEmpty)
+          confirmPasswordError = 'Confirm password cannot be empty';
+      });
+      return;
+    }
+
+    // Check if password and confirm password match
+    if (password != confirmPassword) {
+      setState(() {
+        confirmPasswordError = 'Passwords do not match';
+      });
+      return;
+    }
+
+    // Simulate successful signup (skip the actual API call for testing)
+    print("Simulating successful signup with email: $email");
+    verifyEmail(context); // Proceed to email verification step
+  }
+
+  // Function to sign up a user
+  // Future<void> signUpUser(BuildContext context) async {
+  //   final String email = emailController.text;
+  //   final String password = passwordController.text;
+  //   final String confirmPassword = confirmpasswordController.text;
+
+  //   // Reset error messages
+  //   setState(() {
+  //     emailError = '';
+  //     passwordError = '';
+  //     confirmPasswordError = '';
+  //   });
+
+  //   // Validate email and password fields
+  //   if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+  //     setState(() {
+  //       if (email.isEmpty) emailError = 'Email cannot be empty';
+  //       if (password.isEmpty) passwordError = 'Password cannot be empty';
+  //       if (confirmPassword.isEmpty) confirmPasswordError = 'Confirm password cannot be empty';
+  //     });
+  //     return;
+  //   }
+
+  //   // Check if password and confirm password match
+  //   if (password != confirmPassword) {
+  //     setState(() {
+  //       confirmPasswordError = 'Passwords do not match';
+  //     });
+  //     return;
+  //   }
+
+  //   try {
+  //     final url = Uri.parse('https://your-api-url.com/user/signup');
+
+  //     // Prepare the request body
+  //     final Map<String, dynamic> body = {
+  //       'email': email,
+  //       'password': password,
+  //     };
+
+  //     // Send a POST request to the server
+  //     final response = await http.post(
+  //       url,
+  //       headers: <String, String>{
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: jsonEncode(body),
+  //     );
+
+  //     if (response.statusCode == 201) {
+  //       // If the user is successfully created, proceed to verify email page
+  //       verifyEmail(context);
+  //     } else if (response.statusCode == 409) {
+  //       setState(() {
+  //         emailError = 'User already exists';
+  //       });
+  //     } else {
+  //       setState(() {
+  //         emailError = 'Failed to sign up: ${response.body}';
+  //       });
+  //     }
+  //   } catch (e) {
+  //     setState(() {
+  //       emailError = 'An error occurred: $e';
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +160,8 @@ class SignUp extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Center(
             child: Column(
-              // Main axis alignment
               children: [
-                const SizedBox(
-                  height: 60,
-                ),
-                // Sign Up Text
+                const SizedBox(height: 60),
                 const Text(
                   'Sign up',
                   style: TextStyle(
@@ -57,11 +170,7 @@ class SignUp extends StatelessWidget {
                       fontSize: 32,
                       fontWeight: FontWeight.w700),
                 ),
-
-                // Welcome back text
-                const SizedBox(
-                  height: 3,
-                ),
+                const SizedBox(height: 3),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -83,43 +192,75 @@ class SignUp extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(height: 50),
 
                 // Email text field
-                const SizedBox(
-                  height: 50,
-                ),
                 MyTextfield(
                   controller: emailController,
                   hintText: 'Email',
                   obscureText: false,
                 ),
+                // Show email error
+                if (emailError.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      emailError,
+                      style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
 
-                const SizedBox(
-                  height: 25,
-                ),
+                const SizedBox(height: 25),
+
+                // Password text field
                 MyTextfield(
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
                   isPassword: true,
                 ),
+                // Show password error
+                if (passwordError.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      emailError,
+                      style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
 
-                const SizedBox(
-                  height: 25,
-                ),
+                const SizedBox(height: 25),
+
+                // Confirm Password text field
                 MyTextfield(
                   controller: confirmpasswordController,
                   hintText: 'Confirm Password',
                   obscureText: true,
                   isPassword: true,
                 ),
+                // Show confirm password error
+                if (confirmPasswordError.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      emailError,
+                      style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                const SizedBox(height: 30),
 
-                // Sign in button
-                const SizedBox(
-                  height: 30,
-                ),
+                // Sign up button
                 MyButton(
-                  onTap: () => verifyEmail(context),
+                  onTap: () => signUpUser(context),
                   buttonText: 'Sign up',
                   fontSize: 16,
                   buttoncolor: const Color(0xFF11100B),

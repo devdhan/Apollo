@@ -4,10 +4,10 @@ import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/pages/about_app.dart';
 import 'package:tutorials/components/custom_drawer.dart';
 import 'package:tutorials/pages/chat_two.dart';
-import 'package:tutorials/pages/search_history.dart';
+//import 'package:tutorials/pages/search_history.dart';
 
 class ChatOne extends StatefulWidget {
-  ChatOne({super.key});
+  const ChatOne({super.key});
 
   @override
   _ChatOneState createState() => _ChatOneState();

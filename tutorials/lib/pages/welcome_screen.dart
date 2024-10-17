@@ -117,7 +117,7 @@ class WelcomeScreen extends StatelessWidget {
                     onTap: signino,
                     buttonText: 'Continue with Gmail',
                     fontSize: 16,
-                    buttoncolor: Color(0xFFEAE3D1),
+                    buttoncolor: const Color(0xFFEAE3D1),
                     buttonTextColor: const Color(0xFF11100B),
                     buttonImage: Image.asset(
                       'assets/googlebtn_image.png',

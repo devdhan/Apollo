@@ -48,10 +48,34 @@ class Profile extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: const Color.fromRGBO(234, 227, 209, 1),
-      body: const SafeArea(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
+      backgroundColor: const Color(0xFFEAE3D1),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 0),
+          child: Container(
+            height: 36.98,
+            width: 400,
+            decoration: const BoxDecoration(
+                color: Colors.black,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.all(Radius.circular(5.52))),
+            child: const Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 12.33),
+                  child: Text(
+                    'Theme',
+                    style: TextStyle(
+                        color: Color(0xFFEAE3D1),
+                        fontSize: 10.36,
+                        fontWeight: FontWeight.w600),
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
