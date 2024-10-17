@@ -1,18 +1,89 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:tutorials/components/my_textfield.dart';
+import 'package:http/http.dart' as http;
 import 'package:tutorials/components/my_button.dart';
+import 'package:tutorials/components/my_textfield.dart';
 import 'package:tutorials/pages/otp_screen.dart';
 
-class ResetPasswordOne extends StatelessWidget {
+class ResetPasswordOne extends StatefulWidget {
   ResetPasswordOne({super.key});
 
-  final emailController = TextEditingController();
+  @override
+  _ResetPasswordOneState createState() => _ResetPasswordOneState();
+}
 
-  void Otpscreen(BuildContext context) {
-    Navigator.push(
+class _ResetPasswordOneState extends State<ResetPasswordOne> {
+  final emailController = TextEditingController();
+  String emailError = '';
+
+  // Function to navigate to OTP screen
+  void navigateToOtpScreen(BuildContext context) {
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const OtpScreen()),
     );
+  }
+
+  // Function to send OTP
+  Future<void> sendOtp(BuildContext context) async {
+    final String email = emailController.text;
+
+    // Reset error message
+    setState(() {
+      emailError = '';
+    });
+
+    // Validate email field
+    if (email.isEmpty) {
+      setState(() {
+        emailError = '*Email cannot be empty*';
+      });
+      return;
+    }
+
+    try {
+      final url = Uri.parse('{{server_v1_url}}/auth/send-otp');
+
+      // Prepare the request body
+      final Map<String, dynamic> body = {
+        'email': email,
+      };
+
+      // Send POST request
+      final response = await http.post(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(body),
+      );
+
+      // Handle response
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        if (responseData['response']['status'] == true) {
+          // OTP sent successfully, navigate to OTP screen
+          navigateToOtpScreen(context);
+        } else {
+          setState(() {
+            emailError =
+                'Failed to send OTP: ${responseData['response']['message']}';
+          });
+        }
+      } else if (response.statusCode == 404) {
+        setState(() {
+          emailError = 'User not found';
+        });
+      } else {
+        setState(() {
+          emailError = 'Failed to send OTP: ${response.body}';
+        });
+      }
+    } catch (e) {
+      setState(() {
+        emailError = 'An error occurred: $e';
+      });
+    }
   }
 
   @override
@@ -40,9 +111,7 @@ class ResetPasswordOne extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                const SizedBox(
-                  height: 60,
-                ),
+                const SizedBox(height: 60),
                 const Text(
                   'Reset Password',
                   style: TextStyle(
@@ -52,34 +121,46 @@ class ResetPasswordOne extends StatelessWidget {
                     fontSize: 32,
                   ),
                 ),
-                const SizedBox(
-                  height: 3,
+                const SizedBox(height: 3),
+                const Text(
+                  'Enter your email to reset password',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    color: Color(0xFF000000),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                  ),
                 ),
-                const Text('Enter your email to reset password',
-                    style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      color: Color(0xFF000000),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                    )),
+                const SizedBox(height: 40),
 
-                //email textfield
-                const SizedBox(
-                  height: 40,
-                ),
+                // Email text field
                 MyTextfield(
                   controller: emailController,
                   hintText: 'Email',
                   obscureText: false,
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
+
+                // Show email error
+                if (emailError.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      emailError,
+                      style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+
+                const SizedBox(height: 30),
+
+                // Next button to trigger OTP request
                 MyButton(
-                  onTap: () => Otpscreen(context),
+                  onTap: () => sendOtp(context),
                   buttonText: 'Next',
                   fontSize: 16,
-                  buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
+                  buttoncolor: const Color(0xFF11100B),
                   buttonTextColor: const Color(0xFFEAE3D1),
                 ),
               ],
