@@ -227,7 +227,7 @@ class _SignUpState extends State<SignUp> {
                   Padding(
                     padding: const EdgeInsets.only(top: 5.0),
                     child: Text(
-                      emailError,
+                      passwordError,
                       style: const TextStyle(
                           color: Colors.red,
                           fontSize: 10,
@@ -249,7 +249,7 @@ class _SignUpState extends State<SignUp> {
                   Padding(
                     padding: const EdgeInsets.only(top: 5.0),
                     child: Text(
-                      emailError,
+                      confirmPasswordError,
                       style: const TextStyle(
                           color: Colors.red,
                           fontSize: 10,
