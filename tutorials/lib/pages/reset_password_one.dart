@@ -16,11 +16,11 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
   final emailController = TextEditingController();
   String emailError = '';
 
-  // Function to navigate to OTP screen
-  void navigateToOtpScreen(BuildContext context) {
+  // Function to navigate to OTP screen with the email
+  void navigateToOtpScreen(BuildContext context, String email) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const OtpScreen()),
+      MaterialPageRoute(builder: (context) => OtpScreen(email: email)),
     );
   }
 
@@ -63,7 +63,7 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
         final responseData = jsonDecode(response.body);
         if (responseData['response']['status'] == true) {
           // OTP sent successfully, navigate to OTP screen
-          navigateToOtpScreen(context);
+          navigateToOtpScreen(context, email);
         } else {
           setState(() {
             emailError =
