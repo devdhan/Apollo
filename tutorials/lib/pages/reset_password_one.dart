@@ -42,7 +42,7 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
     }
 
     try {
-      final url = Uri.parse('{{server_v1_url}}/auth/send-otp');
+      final url = Uri.parse('https://your-backend-url.com/auth/send-otp');
 
       // Prepare the request body
       final Map<String, dynamic> body = {
@@ -76,7 +76,7 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
         });
       } else {
         setState(() {
-          emailError = 'Failed to send OTP: ${response.body}';
+          emailError = 'Failed to send OTP. Please try again later.';
         });
       }
     } catch (e) {

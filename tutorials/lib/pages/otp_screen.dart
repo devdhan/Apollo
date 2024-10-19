@@ -30,7 +30,6 @@ class _OtpScreenState extends State<OtpScreen> {
 
   // Function to verify OTP
   Future<void> verifyOtp(BuildContext context) async {
-    // Reset error message
     setState(() {
       otpError = '';
     });
@@ -50,7 +49,6 @@ class _OtpScreenState extends State<OtpScreen> {
         'otp': otp,
       };
 
-      // Send POST request
       final response = await http.post(
         url,
         headers: <String, String>{
@@ -59,20 +57,24 @@ class _OtpScreenState extends State<OtpScreen> {
         body: jsonEncode(body),
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         final responseData = jsonDecode(response.body);
         if (responseData['response']['status'] == true) {
           // OTP verified, navigate to reset password screen
           navigateToResetPassword(context, widget.email, otp);
-        } else {
+        } else if (response.statusCode == 409) {
+          // Invalid OTP or bad request
           setState(() {
-            otpError =
-                'Failed to verify OTP: ${responseData['response']['message']}';
+            otpError = 'Invalid otp';
           });
-        }
+        } //else {
+        //setState(() {
+        //otpError = responseData['response']['message'];
+        //});
+        //}
       } else {
         setState(() {
-          otpError = 'Failed to verify OTP: ${response.body}';
+          otpError = 'Failed to verify OTP. Please try again later.';
         });
       }
     } catch (e) {
@@ -138,7 +140,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   },
                 ),
 
-                // Show OTP error message
+                // Show OTP error
                 if (otpError.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.only(top: 5.0),
@@ -153,7 +155,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
                 const SizedBox(height: 30),
 
-                // Verify OTP button
+                // Verify button
                 MyButton(
                   onTap: () => verifyOtp(context),
                   buttonText: 'Verify',
