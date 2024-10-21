@@ -6,7 +6,7 @@ import 'package:tutorials/components/my_textfield.dart';
 import 'package:tutorials/pages/verify_email.dart';
 
 class SignUp extends StatefulWidget {
-  SignUp({super.key});
+  const SignUp({super.key});
 
   @override
   _SignUpState createState() => _SignUpState();

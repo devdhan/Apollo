@@ -6,7 +6,7 @@ import 'package:tutorials/components/my_textfield.dart';
 import 'package:tutorials/pages/otp_screen.dart';
 
 class ResetPasswordOne extends StatefulWidget {
-  ResetPasswordOne({super.key});
+  const ResetPasswordOne({super.key});
 
   @override
   _ResetPasswordOneState createState() => _ResetPasswordOneState();

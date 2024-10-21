@@ -9,7 +9,7 @@ class VerifyEmail extends StatelessWidget {
     // Navigate to VerifyEmail page
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ChatOne()),
+      MaterialPageRoute(builder: (context) => const ChatOne()),
     );
   }
 

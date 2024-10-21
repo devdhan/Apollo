@@ -40,7 +40,7 @@ class _ChatTwoState extends State<ChatTwo> {
   void searchHistory(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ChatOne()),
+      MaterialPageRoute(builder: (context) => const ChatOne()),
     );
   }
 

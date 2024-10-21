@@ -7,6 +7,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SignIn extends StatefulWidget {
+  const SignIn({super.key});
+
   @override
   _SignInState createState() => _SignInState();
 }
@@ -17,7 +19,7 @@ class _SignInState extends State<SignIn> {
   final passwordController = TextEditingController();
 
   // Secure storage instance to store access token
-  final storage = FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   // Variables to store error messages
   String emailError = '';
@@ -38,10 +40,10 @@ class _SignInState extends State<SignIn> {
     if (email.isEmpty || password.isEmpty) {
       setState(() {
         if (email.isEmpty) {
-          emailError = 'Email is required';
+          emailError = '*Email is required*';
         }
         if (password.isEmpty) {
-          passwordError = 'Password is required';
+          passwordError = '*Password is required*';
         }
       });
       return;
@@ -78,7 +80,7 @@ class _SignInState extends State<SignIn> {
     } catch (e) {
       Navigator.of(context).pop(); // Close the loading dialog
       setState(() {
-        generalError = 'Error occurred during login: $e';
+        generalError = 'Error occurred during login';
       });
     }
   }
@@ -175,7 +177,7 @@ class _SignInState extends State<SignIn> {
                 // Display email error message
                 if (emailError.isNotEmpty)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 42.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 43.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -183,6 +185,7 @@ class _SignInState extends State<SignIn> {
                         style: const TextStyle(
                           color: Colors.red,
                           fontSize: 10,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
@@ -199,7 +202,7 @@ class _SignInState extends State<SignIn> {
                 // Display password error message
                 if (passwordError.isNotEmpty)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 42.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 43.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -207,6 +210,7 @@ class _SignInState extends State<SignIn> {
                         style: const TextStyle(
                           color: Colors.red,
                           fontSize: 10,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
@@ -234,19 +238,6 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
 
-                // Display general error message
-                if (generalError.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 42.0),
-                    child: Text(
-                      generalError,
-                      style: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ),
-
                 // Sign in button
                 MyButton(
                   onTap: signIn, // Call the API when button is pressed
@@ -255,6 +246,21 @@ class _SignInState extends State<SignIn> {
                   buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
                   buttonTextColor: const Color(0xFFEAE3D1),
                 ),
+
+                // Display general error message
+                if (generalError.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 42.0, vertical: 5.0),
+                    child: Text(
+                      generalError,
+                      style: const TextStyle(
+                        color: Colors.red,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),

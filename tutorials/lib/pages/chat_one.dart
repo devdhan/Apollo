@@ -43,7 +43,7 @@ class _ChatOneState extends State<ChatOne> {
   void chatTwo(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ChatTwo()),
+      MaterialPageRoute(builder: (context) => const ChatTwo()),
     );
   }
 
