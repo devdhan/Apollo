@@ -3,27 +3,100 @@ import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/components/my_textfield.dart';
 import 'package:tutorials/pages/chat_one.dart';
 import 'package:tutorials/pages/reset_password_one.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class SignIn extends StatelessWidget {
-  SignIn({super.key});
+class SignIn extends StatefulWidget {
+  @override
+  _SignInState createState() => _SignInState();
+}
 
+class _SignInState extends State<SignIn> {
   // Text editing controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void resetPasswordOne(BuildContext context) {
-    // Navigate to VerifyEmail page
+  // Secure storage instance to store access token
+  final storage = FlutterSecureStorage();
+
+  // Variables to store error messages
+  String emailError = '';
+  String passwordError = '';
+  String generalError = '';
+
+  // Function to handle sign-in
+  Future<void> signIn() async {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    setState(() {
+      emailError = '';
+      passwordError = '';
+      generalError = '';
+    });
+
+    if (email.isEmpty || password.isEmpty) {
+      setState(() {
+        if (email.isEmpty) {
+          emailError = 'Email is required';
+        }
+        if (password.isEmpty) {
+          passwordError = 'Password is required';
+        }
+      });
+      return;
+    }
+
+    // Show loading indicator while waiting for response
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+
+    try {
+      final response = await Dio().post(
+        '{{server_v1_url}}/auth/signin',
+        data: {'email': email, 'password': password},
+      );
+
+      if (response.statusCode == 200) {
+        // On success, store the access token
+        final token = response.data['response']['data']['token'];
+        await storage.write(key: 'access_token', value: token);
+
+        Navigator.of(context).pop(); // Close the loading dialog
+        chat(); // Navigate to ChatOne page
+      } else {
+        // Handle failure
+        Navigator.of(context).pop(); // Close the loading dialog
+        setState(() {
+          generalError = response.data['message'] ?? 'Login failed';
+        });
+      }
+    } catch (e) {
+      Navigator.of(context).pop(); // Close the loading dialog
+      setState(() {
+        generalError = 'Error occurred during login: $e';
+      });
+    }
+  }
+
+  void resetPasswordOne() {
+    // Navigate to ResetPasswordOne page
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ResetPasswordOne()),
     );
   }
 
-  void chat(BuildContext context) {
-    // Navigate to Chat page
+  void chat() {
+    // Navigate to ChatOne page
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => ChatOne()),
+      MaterialPageRoute(builder: (context) => const ChatOne()),
       (Route<dynamic> route) => false,
     );
   }
@@ -100,6 +173,21 @@ class SignIn extends StatelessWidget {
                   hintText: 'Email',
                   obscureText: false,
                 ),
+                // Display email error message
+                if (emailError.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 42.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        emailError,
+                        style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ),
 
                 // Password textfield
                 const SizedBox(height: 30),
@@ -109,6 +197,21 @@ class SignIn extends StatelessWidget {
                   obscureText: true,
                   isPassword: true,
                 ),
+                // Display password error message
+                if (passwordError.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 42.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        passwordError,
+                        style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ),
 
                 // Forgot password,
                 Padding(
@@ -117,7 +220,7 @@ class SignIn extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                        onPressed: () => resetPasswordOne(context),
+                        onPressed: resetPasswordOne,
                         child: const Text(
                           'Forgotten password? Reset',
                           style: TextStyle(
@@ -132,9 +235,22 @@ class SignIn extends StatelessWidget {
                   ),
                 ),
 
+                // Display general error message
+                if (generalError.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 42.0),
+                    child: Text(
+                      generalError,
+                      style: const TextStyle(
+                        color: Colors.red,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+
                 // Sign in button
                 MyButton(
-                  onTap: () => chat(context),
+                  onTap: signIn, // Call the API when button is pressed
                   buttonText: 'Sign in',
                   fontSize: 16,
                   buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
