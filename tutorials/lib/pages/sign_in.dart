@@ -66,7 +66,6 @@ class _SignInState extends State<SignIn> {
         // On success, store the access token
         final token = response.data['response']['data']['token'];
         await storage.write(key: 'access_token', value: token);
-
         Navigator.of(context).pop(); // Close the loading dialog
         chat(); // Navigate to ChatOne page
       } else {
@@ -183,7 +182,7 @@ class _SignInState extends State<SignIn> {
                         emailError,
                         style: const TextStyle(
                           color: Colors.red,
-                          fontSize: 12,
+                          fontSize: 10,
                         ),
                       ),
                     ),
@@ -207,7 +206,7 @@ class _SignInState extends State<SignIn> {
                         passwordError,
                         style: const TextStyle(
                           color: Colors.red,
-                          fontSize: 12,
+                          fontSize: 10,
                         ),
                       ),
                     ),
@@ -243,7 +242,7 @@ class _SignInState extends State<SignIn> {
                       generalError,
                       style: const TextStyle(
                         color: Colors.red,
-                        fontSize: 12,
+                        fontSize: 10,
                       ),
                     ),
                   ),
