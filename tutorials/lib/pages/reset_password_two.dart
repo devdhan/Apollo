@@ -38,7 +38,7 @@ class _ResetPasswordTwoState extends State<ResetPasswordTwo> {
       return;
     }
 
-    // Validate password length (optional)
+    // Validate password length
     if (password.length < 6) {
       setState(() {
         errorMessage = 'Password must be at least 6 characters long';
