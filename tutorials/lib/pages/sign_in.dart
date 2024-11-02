@@ -60,7 +60,7 @@ class _SignInState extends State<SignIn> {
 
     try {
       final response = await Dio().post(
-        '{{server_v1_url}}/auth/signin',
+        'https://apollo-server-5yna.onrender.com/v1/auth/signin',
         data: {'email': email, 'password': password},
       );
 
@@ -80,7 +80,7 @@ class _SignInState extends State<SignIn> {
     } catch (e) {
       Navigator.of(context).pop(); // Close the loading dialog
       setState(() {
-        generalError = 'Error occurred during login';
+        generalError = 'Error occurred during $e';
       });
     }
   }

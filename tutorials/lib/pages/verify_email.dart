@@ -106,8 +106,6 @@ class VerifyEmail extends StatelessWidget {
             ],
           ),
         ),
-
-        //add toggle to password
       ),
     );
   }

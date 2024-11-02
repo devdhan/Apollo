@@ -42,7 +42,8 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
     }
 
     try {
-      final url = Uri.parse('https://your-backend-url.com/auth/send-otp');
+      final url =
+          Uri.parse('https://apollo-server-5yna.onrender.com/auth/send-otp');
 
       // Prepare the request body
       final Map<String, dynamic> body = {

@@ -31,7 +31,6 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  // Function to sign up a user
   Future<void> signUpUser(BuildContext context) async {
     final String email = emailController.text;
     final String password = passwordController.text;
@@ -69,39 +68,75 @@ class _SignUpState extends State<SignUp> {
     }
 
     try {
-      final url = Uri.parse('{{server_v1_url}}/user/signup');
+      final signUpUrl =
+          Uri.parse('https://apollo-server-5yna.onrender.com/v1/user/signup');
 
-      // Prepare the request body
-      final Map<String, dynamic> body = {
+      // Prepare the request body for signup
+      final Map<String, dynamic> signUpBody = {
         'email': email,
         'password': password,
       };
 
-      // Send a POST request to the server
-      final response = await http.post(
-        url,
+      // Send a POST request to the server to sign up
+      final signUpResponse = await http.post(
+        signUpUrl,
         headers: <String, String>{
           'Content-Type': 'application/json',
         },
-        body: jsonEncode(body),
+        body: jsonEncode(signUpBody),
       );
 
-      // Handle response
-      if (response.statusCode == 201) {
+      // Handle signup response
+      if (signUpResponse.statusCode == 201) {
         // Success response: user created
-        final responseData = jsonDecode(response.body);
+        final responseData = jsonDecode(signUpResponse.body);
         if (responseData['status'] == true) {
-          // Proceed to verify email page
-          verifyEmail(context);
+          // Now send the verification email
+          final verifyEmailUrl = Uri.parse(
+              'https://apollo-server-5yna.onrender.com/v1/auth/send-verification-email');
+
+          // Prepare request body for email verification
+          final Map<String, dynamic> verifyEmailBody = {
+            'email': email,
+          };
+
+          // Send a POST request to send verification email
+          final verifyEmailResponse = await http.post(
+            verifyEmailUrl,
+            headers: <String, String>{
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode(verifyEmailBody),
+          );
+
+          // Handle verification email response
+          if (verifyEmailResponse.statusCode == 201) {
+            final verificationResponseData =
+                jsonDecode(verifyEmailResponse.body);
+            if (verificationResponseData['response']['status'] == true) {
+              // Navigate to Verify Email page
+              verifyEmail(context);
+            } else {
+              setState(() {
+                emailError =
+                    'Failed to send verification email: ${verificationResponseData['response']['message']}';
+              });
+            }
+          } else {
+            setState(() {
+              emailError =
+                  'Failed to send verification email: ${verifyEmailResponse.body}';
+            });
+          }
         }
-      } else if (response.statusCode == 409) {
-        // Conflict response: Email already exists
+      } else if (signUpResponse.statusCode == 409) {
+        // Email already exists
         setState(() {
           emailError = 'Email already exists';
         });
       } else {
         setState(() {
-          emailError = 'Failed to sign up: ${response.body}';
+          emailError = 'Failed to sign up: ${signUpResponse.body}';
         });
       }
     } catch (e) {

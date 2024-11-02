@@ -42,7 +42,8 @@ class _OtpScreenState extends State<OtpScreen> {
     }
 
     try {
-      final url = Uri.parse('{{server_v1_url}}/auth/verify-otp');
+      final url =
+          Uri.parse('https://apollo-server-5yna.onrender.com/auth/verify-otp');
 
       final Map<String, dynamic> body = {
         'email': widget.email,
