@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/pages/guest_homepage.dart';
-import 'package:tutorials/pages/sign_in.dart';
-import 'package:tutorials/pages/sign_up.dart';
+import 'package:tutorials/authentication/presentation/sign_in.dart';
+import 'package:tutorials/authentication/presentation/sign_up.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -13,7 +13,7 @@ class WelcomeScreen extends StatelessWidget {
     // Navigate to SignIn page
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SignIn()),
+      MaterialPageRoute(builder: (context) => const SignIn()),
     );
   }
 
@@ -21,7 +21,7 @@ class WelcomeScreen extends StatelessWidget {
     // Navigate to SignUp page
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SignUp()),
+      MaterialPageRoute(builder: (context) => const SignUp()),
     );
   }
 

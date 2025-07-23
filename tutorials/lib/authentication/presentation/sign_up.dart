@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/components/my_textfield.dart';
-import 'package:tutorials/pages/verify_email.dart';
+import 'package:tutorials/authentication/presentation/verify_email.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});

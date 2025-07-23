@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/components/my_textfield.dart';
-import 'package:tutorials/pages/sign_in.dart';
+import 'package:tutorials/authentication/presentation/sign_in.dart';
 
 class ResetPasswordTwo extends StatefulWidget {
   final String email;
@@ -71,7 +71,7 @@ class _ResetPasswordTwoState extends State<ResetPasswordTwo> {
           // Password reset successful, navigate to sign-in screen
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => SignIn()),
+            MaterialPageRoute(builder: (context) => const SignIn()),
           );
         } else {
           setState(() {

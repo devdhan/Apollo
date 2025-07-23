@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tutorials/components/my_button.dart';
 import 'package:tutorials/components/my_textfield.dart';
 import 'package:tutorials/pages/chat_one.dart';
-import 'package:tutorials/pages/reset_password_one.dart';
+import 'package:tutorials/authentication/presentation/reset_password_one.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -89,7 +89,7 @@ class _SignInState extends State<SignIn> {
     // Navigate to ResetPasswordOne page
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ResetPasswordOne()),
+      MaterialPageRoute(builder: (context) => const ResetPasswordOne()),
     );
   }
 
