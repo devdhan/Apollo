@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/commons/bottom_textfield.dart';
 import 'package:tutorials/commons/custom_drawer.dart';
-import 'package:tutorials/features/homescreen/mainhomescreen/chat_one.dart';
-import 'package:tutorials/features/homescreen/mainhomescreen/about_app.dart';
+import 'package:tutorials/features/homescreen/mainhomescreen/presentation/chat_one.dart';
+import 'package:tutorials/features/homescreen/mainhomescreen/presentation/about_app.dart';
 
 class ChatTwo extends StatefulWidget {
   const ChatTwo({super.key});
@@ -81,15 +82,15 @@ class _ChatTwoState extends State<ChatTwo> {
                 Image.asset(
                   'assets/blankcircle.png',
                 ),
-                const SizedBox(
-                  width: 15,
+                SizedBox(
+                  width: 15.w,
                 ),
-                const Text(
+                Text(
                   'APOLLO ChatBox',
                   style: TextStyle(
-                    fontSize: 13,
+                    fontSize: 13.sp,
                     fontFamily: 'Montserrat',
-                    color: Color(0xFF000000),
+                    color: const Color(0xFF000000),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -98,7 +99,7 @@ class _ChatTwoState extends State<ChatTwo> {
             centerTitle: true,
             actions: [
               Padding(
-                padding: const EdgeInsets.only(right: 20.0),
+                padding: EdgeInsets.only(right: 20.w),
                 child: IconButton(
                   onPressed: () {},
                   icon: const Icon(Icons.history),
@@ -111,7 +112,7 @@ class _ChatTwoState extends State<ChatTwo> {
       ),
       // DRAWER
       drawer: const CustomDrawer(),
-      backgroundColor: const Color.fromRGBO(234, 227, 209, 1),
+      backgroundColor: const Color(0xFFEAE3D1),
       body: Stack(
         children: [
           // Background image
@@ -127,44 +128,44 @@ class _ChatTwoState extends State<ChatTwo> {
               reverse: true,
               child: Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10.0),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10.h),
                     child: Center(
                       child: Text(
                         'Ask me anything',
                         style: TextStyle(
-                            fontSize: 13,
+                            fontSize: 13.sp,
                             fontFamily: 'Montserrat',
-                            color: Color(0xA4000000)),
+                            color: const Color(0xA4000000)),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(265, 20, 15, 0),
+                    padding: const EdgeInsets.fromLTRB(265, 20, 15, 0).w,
                     child: Container(
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(20),
-                              bottomLeft: Radius.circular(30)),
-                          color: Color(0xFF11100B)),
-                      child: const Padding(
+                              topLeft: Radius.circular(30.r),
+                              topRight: Radius.circular(20.r),
+                              bottomLeft: Radius.circular(30.r)),
+                          color: const Color(0xFF11100B)),
+                      child: Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 14.0, vertical: 10.0),
+                            horizontal: 14.w, vertical: 10.h),
                         child: Text(
                           'How to write my exam',
                           style: TextStyle(
-                              fontSize: 10,
+                              fontSize: 10.sp,
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w500,
-                              color: Color(0xFFFFFFFF)),
+                              color: const Color(0xFFFFFFFF)),
                         ),
                       ),
                     ),
                   ),
                   // Chat icon
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
                     child: Row(
                       children: [
                         Image.asset(
@@ -174,24 +175,24 @@ class _ChatTwoState extends State<ChatTwo> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(15, 10, 165, 100),
+                    padding: const EdgeInsets.fromLTRB(15, 10, 165, 100).w,
                     child: Container(
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(30),
-                              bottomRight: Radius.circular(30),
-                              bottomLeft: Radius.circular(20)),
-                          color: Color(0xFFFFFFFF)),
-                      child: const Padding(
+                              topRight: Radius.circular(30.r),
+                              bottomRight: Radius.circular(30.r),
+                              bottomLeft: Radius.circular(20.r)),
+                          color: const Color(0xFFFFFFFF)),
+                      child: Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 10.0),
+                            horizontal: 10.w, vertical: 10.h),
                         child: Text(
                           'To write your exam effectively, start by preparing thoroughly with regular study and practice of past papers. Ensure you understand the exam format and gather all necessary materials. On exam day, manage your time by reading instructions carefully, starting with easier questions, and allocating time for each section. Use elimination for multiple choice questions, be concise in short answers, and outline essays before writing. Review your work for errors, completeness, and clarity. For objective exams, read all options; for subjective exams, support arguments with evidence; for problem-solving exams, show all work and double-check calculations. Post-exam, reflect on your performance to improve for next time.',
                           style: TextStyle(
-                              fontSize: 10,
+                              fontSize: 10.sp,
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w500,
-                              color: Color(0xFF000000)),
+                              color: const Color(0xFF000000)),
                         ),
                       ),
                     ),

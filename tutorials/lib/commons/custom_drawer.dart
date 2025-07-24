@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutorials/features/homescreen/mainhomescreen/about_app.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tutorials/features/homescreen/mainhomescreen/presentation/about_app.dart';
 import 'package:tutorials/commons/logout_dialog.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -14,53 +15,53 @@ class CustomDrawer extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 50, left: 30.0),
+              Padding(
+                padding: EdgeInsets.only(top: 50.h, left: 30.w),
                 child: Text(
                   'Recents',
                   style: TextStyle(
-                    fontSize: 26,
+                    fontSize: 26.sp,
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF000000),
+                    color: const Color(0xFF000000),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 30.h,
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 15.0),
+              Padding(
+                padding: EdgeInsets.only(left: 15.w),
                 child: ListTile(
                   title: Text(
                     'Today',
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF000000),
+                      color: const Color(0xFF000000),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0).w,
                 child: TextButton(
                   onPressed: () {},
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 12.0),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
                     decoration: BoxDecoration(
                       color: Colors.black,
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(5.r),
                     ),
-                    child: const Align(
+                    child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'How to write my exam',
                         style: TextStyle(
-                          color: Color(0xFFEAE3D1),
-                          fontSize: 10,
+                          color: const Color(0xFFEAE3D1),
+                          fontSize: 10.sp,
                         ),
                       ),
                     ),
@@ -68,23 +69,23 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0).w,
                 child: TextButton(
                   onPressed: () {},
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 12.0),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
                     decoration: BoxDecoration(
                       color: Colors.black,
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(5.r),
                     ),
-                    child: const Align(
+                    child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'How to write my exam',
                         style: TextStyle(
-                          color: Color(0xFFEAE3D1),
-                          fontSize: 10,
+                          color: const Color(0xFFEAE3D1),
+                          fontSize: 10.sp,
                         ),
                       ),
                     ),
@@ -92,64 +93,64 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0).w,
                 child: TextButton(
                   onPressed: () {},
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 12.0),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
                     decoration: BoxDecoration(
                       color: Colors.black,
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(5.r),
                     ),
-                    child: const Align(
+                    child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'How to write my exam',
                         style: TextStyle(
-                          color: Color(0xFFEAE3D1),
-                          fontSize: 10,
+                          color: const Color(0xFFEAE3D1),
+                          fontSize: 10.sp,
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 5,
+              SizedBox(
+                height: 5.h,
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 15.0),
+              Padding(
+                padding: EdgeInsets.only(left: 15.w),
                 child: ListTile(
                   title: Text(
                     'Yesterday',
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF000000),
+                      color: const Color(0xFF000000),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0).w,
                 child: TextButton(
                   onPressed: () {},
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 12.0),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
                     decoration: BoxDecoration(
                       color: Colors.black,
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(5.r),
                     ),
-                    child: const Align(
+                    child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'How to write my exam',
                         style: TextStyle(
-                          color: Color(0xFFEAE3D1),
-                          fontSize: 10,
+                          color: const Color(0xFFEAE3D1),
+                          fontSize: 10.sp,
                         ),
                       ),
                     ),
@@ -157,23 +158,23 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0).w,
                 child: TextButton(
                   onPressed: () {},
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 12.0),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
                     decoration: BoxDecoration(
                       color: Colors.black,
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(5.r),
                     ),
-                    child: const Align(
+                    child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'How to write my exam',
                         style: TextStyle(
-                          color: Color(0xFFEAE3D1),
-                          fontSize: 10,
+                          color: const Color(0xFFEAE3D1),
+                          fontSize: 10.sp,
                         ),
                       ),
                     ),
@@ -181,23 +182,23 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0).w,
                 child: TextButton(
                   onPressed: () {},
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 12.0),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
                     decoration: BoxDecoration(
                       color: Colors.black,
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(5.r),
                     ),
-                    child: const Align(
+                    child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'How to write my exam',
                         style: TextStyle(
-                          color: Color(0xFFEAE3D1),
-                          fontSize: 10,
+                          color: const Color(0xFFEAE3D1),
+                          fontSize: 10.sp,
                         ),
                       ),
                     ),
@@ -219,20 +220,20 @@ class CustomDrawer extends StatelessWidget {
                         );
                       },
                       child: SizedBox(
-                        width: 250,
+                        width: 250.w,
                         child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 12.0),
+                          padding: EdgeInsets.symmetric(vertical: 12.h),
                           decoration: BoxDecoration(
                             color: Colors.black,
-                            borderRadius: BorderRadius.circular(5.0),
+                            borderRadius: BorderRadius.circular(5.r),
                           ),
-                          child: const Align(
+                          child: Align(
                             alignment: Alignment.center,
                             child: Text(
                               'About',
                               style: TextStyle(
-                                color: Color(0xFFEAE3D1),
-                                fontSize: 12,
+                                color: const Color(0xFFEAE3D1),
+                                fontSize: 12.sp,
                               ),
                             ),
                           ),
@@ -240,24 +241,24 @@ class CustomDrawer extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
+                      padding: EdgeInsets.only(bottom: 20.h),
                       child: TextButton(
                         onPressed: () => showLogoutDialog(context),
                         child: SizedBox(
-                          width: 250,
+                          width: 250.w,
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 12.0),
+                            padding: EdgeInsets.symmetric(vertical: 12.h),
                             decoration: BoxDecoration(
                               color: Colors.black,
-                              borderRadius: BorderRadius.circular(5.0),
+                              borderRadius: BorderRadius.circular(5.r),
                             ),
-                            child: const Align(
+                            child: Align(
                               alignment: Alignment.center,
                               child: Text(
                                 'Log out',
                                 style: TextStyle(
-                                  color: Color(0xFFEAE3D1),
-                                  fontSize: 12,
+                                  color: const Color(0xFFEAE3D1),
+                                  fontSize: 12.sp,
                                 ),
                               ),
                             ),

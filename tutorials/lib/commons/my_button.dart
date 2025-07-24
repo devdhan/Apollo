@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -23,15 +24,15 @@ class MyButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-        margin: const EdgeInsets.symmetric(horizontal: 42.0),
+        padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
+        margin: EdgeInsets.symmetric(horizontal: 42.w),
         decoration: BoxDecoration(
           color: buttoncolor,
           border: Border.all(
-            width: 1.0,
-            color: const Color.fromRGBO(17, 16, 11, 1),
+            width: 1.w,
+            color: const Color(0xFF11100B),
           ),
-          borderRadius: BorderRadius.circular(7),
+          borderRadius: BorderRadius.circular(7.r),
         ),
         child: Center(
           child: buttonImage != null
@@ -40,7 +41,7 @@ class MyButton extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     buttonImage!,
-                    const SizedBox(width: 8.0),
+                    SizedBox(width: 8.w),
                     Flexible(
                       child: Text(
                         buttonText,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -25,7 +26,7 @@ class Profile extends StatelessWidget {
               backgroundColor: Colors.transparent,
               elevation: 0,
               leading: Padding(
-                padding: const EdgeInsets.only(left: 24.0),
+                padding: EdgeInsets.only(left: 24.w),
                 child: IconButton(
                   icon: const Icon(Icons.arrow_back_ios),
                   color: const Color(0xFF000000),
@@ -34,12 +35,12 @@ class Profile extends StatelessWidget {
                   },
                 ),
               ),
-              title: const Text(
+              title: Text(
                 'Profile',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   fontFamily: 'Montserrat',
-                  color: Color(0xFF000000),
+                  color: const Color(0xFF000000),
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -51,24 +52,24 @@ class Profile extends StatelessWidget {
       backgroundColor: const Color(0xFFEAE3D1),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 0),
+          padding: const EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 0).w,
           child: Container(
-            height: 36.98,
-            width: 400,
-            decoration: const BoxDecoration(
+            height: 36.98.h,
+            width: 400.w,
+            decoration: BoxDecoration(
                 color: Colors.black,
                 shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.all(Radius.circular(5.52))),
-            child: const Row(
+                borderRadius: BorderRadius.all(Radius.circular(5.52.r))),
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 12.33),
+                  padding: EdgeInsets.only(left: 12.33.w),
                   child: Text(
                     'Theme',
                     style: TextStyle(
-                        color: Color(0xFFEAE3D1),
-                        fontSize: 10.36,
+                        color: const Color(0xFFEAE3D1),
+                        fontSize: 10.36.sp,
                         fontWeight: FontWeight.w600),
                     textAlign: TextAlign.start,
                   ),

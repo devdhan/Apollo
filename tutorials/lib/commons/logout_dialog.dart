@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/features/authentication/presentation/welcome_screen.dart';
 
 void showLogoutDialog(BuildContext context) {
@@ -7,46 +8,46 @@ void showLogoutDialog(BuildContext context) {
     builder: (BuildContext context) {
       return Dialog(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(28.0),
+          borderRadius: BorderRadius.circular(28.r),
         ),
         backgroundColor: const Color(0xFFEAE3D1),
         child: Padding(
-          padding: const EdgeInsets.only(top: 25.0, bottom: 20.0),
+          padding: EdgeInsets.only(top: 25.h, bottom: 20.h),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Image.asset('assets/ion_log-out.png'),
-              const SizedBox(height: 10),
-              const Text(
+              SizedBox(height: 10.h),
+              Text(
                 'Oh no! You’re leaving...\nAre you sure?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFF000000),
-                  fontSize: 13,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'Montserrat',
                 ),
               ),
-              const SizedBox(height: 5),
+              SizedBox(height: 5.h),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop(); // Close the dialog
                 },
                 child: SizedBox(
-                  width: 200,
+                  width: 200.w,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    padding: EdgeInsets.symmetric(vertical: 10.h),
                     decoration: BoxDecoration(
                       color: Colors.black,
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(5.r),
                     ),
-                    child: const Align(
+                    child: Align(
                       alignment: Alignment.center,
                       child: Text(
                         'Nah, just kidding',
                         style: TextStyle(
                             color: Color(0xFFEAE3D1),
-                            fontSize: 12,
+                            fontSize: 12.sp,
                             fontFamily: 'Montserrat'),
                       ),
                     ),
@@ -65,20 +66,20 @@ void showLogoutDialog(BuildContext context) {
                   ); // Navigate to WelcomeScreen
                 },
                 child: SizedBox(
-                  width: 200,
+                  width: 200.w,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    padding: EdgeInsets.symmetric(vertical: 10.h),
                     decoration: BoxDecoration(
                         color: const Color(0xFFEAE3D1),
-                        borderRadius: BorderRadius.circular(5.0),
+                        borderRadius: BorderRadius.circular(5.r),
                         border: Border.all(color: const Color(0xFF11100B))),
-                    child: const Align(
+                    child: Align(
                       alignment: Alignment.center,
                       child: Text(
                         'Yes, log me out',
                         style: TextStyle(
                             color: Color(0xFF11100B),
-                            fontSize: 12,
+                            fontSize: 12.sp,
                             fontFamily: 'Montserrat'),
                       ),
                     ),

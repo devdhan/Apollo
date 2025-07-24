@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/commons/logout_dialog.dart';
 import 'package:tutorials/commons/my_button.dart';
-import 'package:tutorials/features/homescreen/mainhomescreen/about_app.dart';
+import 'package:tutorials/features/homescreen/mainhomescreen/presentation/about_app.dart';
 import 'package:tutorials/commons/bottom_textfield.dart';
 
 class GuestChat extends StatefulWidget {

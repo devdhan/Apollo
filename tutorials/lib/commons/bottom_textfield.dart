@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class BottomTextField extends StatefulWidget {
   final TextEditingController messageController;
   final FocusNode focusNode;
@@ -32,7 +34,7 @@ class _BottomTextFieldState extends State<BottomTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 55,
+      height: 55.h,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -45,16 +47,16 @@ class _BottomTextFieldState extends State<BottomTextField> {
         color: const Color(0xFFFFFFFF),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 5.0, right: 12.0),
+        padding: EdgeInsets.only(left: 5.w, right: 12.w),
         child: Row(
           children: [
             Expanded(
               child: SizedBox(
-                height: 45,
+                height: 45.h,
                 child: TextField(
-                  style: const TextStyle(
-                    color: Color(0xAA000000),
-                    fontSize: 12,
+                  style: TextStyle(
+                    color: const Color(0xAA000000),
+                    fontSize: 12.sp,
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w600,
                     letterSpacing: -0.41,
@@ -75,11 +77,11 @@ class _BottomTextFieldState extends State<BottomTextField> {
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
                     hintText: 'Ask anything...',
-                    hintStyle: const TextStyle(
+                    hintStyle: TextStyle(
                       fontFamily: 'Montserrat',
-                      color: Color(0xAA000000),
+                      color: const Color(0xAA000000),
                       fontWeight: FontWeight.w600,
-                      fontSize: 12,
+                      fontSize: 12.sp,
                     ),
                     suffixIcon: Transform.rotate(
                       angle: -45 * math.pi / 180,
@@ -92,14 +94,15 @@ class _BottomTextFieldState extends State<BottomTextField> {
                 ),
               ),
             ),
-            const SizedBox(width: 5.0),
+            SizedBox(width: 5.w),
             if (_isTextFieldFocused)
               Container(
-                width: 55,
-                height: 55,
-                padding: const EdgeInsets.all(5.5),
+                width: 55.w,
+                height: 55.h,
+                padding: const EdgeInsets.all(5.5).w,
                 decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xFFCACACA), width: 4),
+                  border:
+                      Border.all(color: const Color(0xFFCACACA), width: 4.w),
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
@@ -119,11 +122,12 @@ class _BottomTextFieldState extends State<BottomTextField> {
               )
             else
               Container(
-                width: 55,
-                height: 55,
-                padding: const EdgeInsets.all(5.5),
+                width: 55.w,
+                height: 55.h,
+                padding: const EdgeInsets.all(5.5).w,
                 decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xFFCACACA), width: 4),
+                  border:
+                      Border.all(color: const Color(0xFFCACACA), width: 4.w),
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),

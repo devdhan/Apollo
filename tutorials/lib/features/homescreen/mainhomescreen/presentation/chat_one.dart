@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/commons/bottom_textfield.dart';
 import 'package:tutorials/commons/my_button.dart';
-import 'package:tutorials/features/homescreen/mainhomescreen/about_app.dart';
+import 'package:tutorials/features/homescreen/mainhomescreen/presentation/about_app.dart';
 import 'package:tutorials/commons/custom_drawer.dart';
-import 'package:tutorials/features/homescreen/mainhomescreen/chat_two.dart';
+import 'package:tutorials/features/homescreen/mainhomescreen/presentation/chat_two.dart';
 //import 'package:tutorials/pages/search_history.dart';
 
 class ChatOne extends StatefulWidget {
@@ -85,15 +86,15 @@ class _ChatOneState extends State<ChatOne> {
                 Image.asset(
                   'assets/blankcircle.png',
                 ),
-                const SizedBox(
-                  width: 15,
+                SizedBox(
+                  width: 15.w,
                 ),
-                const Text(
+                Text(
                   'APOLLO ChatBox',
                   style: TextStyle(
-                    fontSize: 13,
+                    fontSize: 13.sp,
                     fontFamily: 'Montserrat',
-                    color: Color(0xFF000000),
+                    color: const Color(0xFF000000),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -102,7 +103,7 @@ class _ChatOneState extends State<ChatOne> {
             centerTitle: true,
             actions: [
               Padding(
-                padding: const EdgeInsets.only(right: 20.0),
+                padding: EdgeInsets.only(right: 20.w),
                 child: IconButton(
                   onPressed: () => chatTwo(context),
                   icon: const Icon(Icons.history),
@@ -116,7 +117,7 @@ class _ChatOneState extends State<ChatOne> {
       //DRAWER
       drawer: const CustomDrawer(),
       //BODY
-      backgroundColor: const Color.fromRGBO(234, 227, 209, 1),
+      backgroundColor: const Color(0xFFEAE3D1),
       body: SafeArea(
         child: Stack(
           children: <Widget>[
@@ -126,55 +127,55 @@ class _ChatOneState extends State<ChatOne> {
               width: double.infinity,
               height: double.infinity,
             ),
-            const Positioned(
-              top: 100.0,
-              left: 0,
-              right: 0,
+            Positioned(
+              top: 100.h,
+              left: 0.w,
+              right: 0.w,
               child: Center(
                 child: Text(
                   'Hello, there\nHow can I help you\ntoday?',
                   style: TextStyle(
-                    fontSize: 34,
+                    fontSize: 34.sp,
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF11100B),
+                    color: const Color(0xFF11100B),
                   ),
                 ),
               ),
             ),
-            const Positioned(
-              top: 300.0,
-              left: 0,
-              right: 0,
+            Positioned(
+              top: 300.h,
+              left: 0.w,
+              right: 0.w,
               child: Center(
                 child: Text(
                   'Suggestions:',
                   style: TextStyle(
-                    fontSize: 17,
+                    fontSize: 17.sp,
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF000000),
+                    color: const Color(0xFF000000),
                   ),
                 ),
               ),
             ),
             //Suggestion buttons
             Positioned(
-              top: 340.0,
-              left: 0,
-              right: 0,
+              top: 340.h,
+              left: 0.w,
+              right: 0.w,
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: SizedBox(
-                    height: 68,
+                    height: 68.h,
                     child: MyButton(
                       onTap: () {},
                       buttonText:
                           'Which universities can I go in Lagos state, Nigeria?',
                       buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
                       buttonTextColor: const Color(0xFFEAE3D1),
-                      fontSize: 13,
+                      fontSize: 13.sp,
                     ),
                   ),
                 ),
@@ -182,41 +183,41 @@ class _ChatOneState extends State<ChatOne> {
             ),
 
             Positioned(
-              top: 430.0,
-              left: 0,
-              right: 0,
+              top: 430.h,
+              left: 0.w,
+              right: 0.w,
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: SizedBox(
-                    height: 68,
+                    height: 68.h,
                     child: MyButton(
                       onTap: () {},
                       buttonText: 'What is the cut-off mark for Jamb?',
                       buttoncolor: const Color(0xFF11100B),
                       buttonTextColor: const Color(0xFFEAE3D1),
-                      fontSize: 13,
+                      fontSize: 13.sp,
                     ),
                   ),
                 ),
               ),
             ),
             Positioned(
-              top: 525.0,
-              left: 0,
-              right: 0,
+              top: 525.h,
+              left: 0.w,
+              right: 0.w,
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: SizedBox(
-                    height: 68,
+                    height: 68.h,
                     child: MyButton(
                       onTap: () {},
                       buttonText:
                           'What is the WAEC subject combination for computer science',
                       buttoncolor: const Color(0xFF11100B),
                       buttonTextColor: const Color(0xFFEAE3D1),
-                      fontSize: 13,
+                      fontSize: 13.sp,
                     ),
                   ),
                 ),
@@ -224,9 +225,9 @@ class _ChatOneState extends State<ChatOne> {
             ),
             //Chat Textfield
             Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
+              bottom: 0.h,
+              left: 0.w,
+              right: 0.w,
               child: BottomTextField(
                 messageController: messageController,
                 focusNode: _focusNode,

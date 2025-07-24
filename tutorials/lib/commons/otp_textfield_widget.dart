@@ -25,7 +25,7 @@ class _OtpTextfieldWidgetState extends State<OtpTextfieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 35.0),
+      padding: EdgeInsets.symmetric(horizontal: 35.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: List.generate(
@@ -55,8 +55,8 @@ class CustomField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 68,
-      width: 66,
+      height: 68.h,
+      width: 66.w,
       child: TextFormField(
         controller: controller,
         onChanged: onChanged,

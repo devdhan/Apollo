@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/commons/my_button.dart';
-import 'package:tutorials/features/homescreen/mainhomescreen/chat_one.dart';
+import 'package:tutorials/features/homescreen/mainhomescreen/presentation/chat_one.dart';
 
 class VerifyEmail extends StatelessWidget {
   const VerifyEmail({super.key});
@@ -18,11 +19,11 @@ class VerifyEmail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF11100B),
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40))),
-        toolbarHeight: kToolbarHeight + 49,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40.r))),
+        toolbarHeight: (kToolbarHeight + 49).h,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 24.0),
+          padding: EdgeInsets.only(left: 24.w),
           child: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
             color: const Color(0xFFEAE3D1),
@@ -37,69 +38,69 @@ class VerifyEmail extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              const SizedBox(
-                height: 70,
+              SizedBox(
+                height: 70.h,
               ),
               Center(
                 child: Image.asset('assets/verify_email.png'),
               ),
 
               //Verify email text
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
-              const Text(
+              Text(
                 'Verify your email',
                 style: TextStyle(
                     fontFamily: 'Montserrat',
-                    color: Color(0xFF000000),
-                    fontSize: 25,
+                    color: const Color(0xFF000000),
+                    fontSize: 25.sp,
                     fontWeight: FontWeight.w500),
               ),
 
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'We sent an email to ',
                     style: TextStyle(
                         fontFamily: 'Montserrat',
-                        color: Color(0xFF000000),
-                        fontSize: 15,
+                        color: const Color(0xFF000000),
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
                     'abcde@gmail.com',
                     style: TextStyle(
                         fontFamily: 'Montserrat',
-                        color: Color(0xFF000000),
-                        fontSize: 15,
+                        color: const Color(0xFF000000),
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w700),
                   ),
                 ],
               ),
-              const Center(
+              Center(
                 child: Text(
                   'Please confirm your email and continue\nwith APOLLO as you like.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Montserrat',
-                    color: Color(0xFF000000),
-                    fontSize: 15,
+                    color: const Color(0xFF000000),
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 30.h,
               ),
               MyButton(
                 onTap: () => chat(context),
                 buttonText: 'Confirm email',
-                fontSize: 16,
+                fontSize: 16.sp,
                 buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
                 buttonTextColor: const Color(0xFFEAE3D1),
               )
