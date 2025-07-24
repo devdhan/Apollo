@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutorials/authentication/presentation/welcome_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tutorials/features/authentication/presentation/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,9 +12,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(390, 844),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          home: SplashScreen(),
+          debugShowCheckedModeBanner: false,
+        );
+      },
     );
   }
 }

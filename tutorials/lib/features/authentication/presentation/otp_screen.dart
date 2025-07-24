@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/otp_textfield_widget.dart';
-import 'package:tutorials/authentication/presentation/reset_password_two.dart';
+import 'package:tutorials/features/authentication/presentation/reset_password_two.dart';
 
 class OtpScreen extends StatefulWidget {
   final String email; // Receive email from the previous screen

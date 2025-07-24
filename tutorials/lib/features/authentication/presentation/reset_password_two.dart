@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/my_textfield.dart';
-import 'package:tutorials/authentication/presentation/sign_in.dart';
+import 'package:tutorials/features/authentication/presentation/sign_in.dart';
 
 class ResetPasswordTwo extends StatefulWidget {
   final String email;
