@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/commons/my_button.dart';
-import 'package:tutorials/features/mainhomescreen/guest_chat.dart';
+import 'package:tutorials/features/guestmode/presentation/guest_chat.dart';
 
 class GuestHomepage extends StatelessWidget {
   const GuestHomepage({super.key});
@@ -10,7 +11,7 @@ class GuestHomepage extends StatelessWidget {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => const GuestChat()),
-      (Route<dynamic> route) => false,
+      (route) => false,
     );
   }
 
@@ -19,11 +20,11 @@ class GuestHomepage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF11100B),
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40))),
-        toolbarHeight: kToolbarHeight + 49,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40.r))),
+        toolbarHeight: (kToolbarHeight + 49).h,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 24.0),
+          padding: EdgeInsets.only(left: 24.w),
           child: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
             color: const Color(0xFFEAE3D1),
@@ -33,60 +34,60 @@ class GuestHomepage extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: const Color.fromRGBO(234, 227, 209, 1),
+      backgroundColor: const Color(0xFFEAE3D1),
       body: SafeArea(
         child: Center(
           child: Column(
             children: [
-              const SizedBox(
-                height: 70,
+              SizedBox(
+                height: 70.h,
               ),
               Center(
                 child: Image.asset('assets/guessimage.png'),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 23.0),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 23.w),
                 child: Center(
                   child: Text(
                     'You’re logged in as a guest',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 25.sp,
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w500,
-                        color: Color.fromRGBO(0, 0, 0, 1)),
+                        color: const Color(0xFF000000)),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 8,
+              SizedBox(
+                height: 8.h,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 23.0),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 23.w),
                 child: Center(
                   child: Text(
                     'There will be no history record of whatever you \nsearch on APOLLO ChatBox and everything \nyou search for will clear as soon as you log out or \nclose the application.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 15.sp,
                         fontFamily: 'Montserrat',
-                        color: Color.fromRGBO(0, 0, 0, 1),
+                        color: const Color(0xFF000000),
                         fontWeight: FontWeight.w500),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 30.h,
               ),
               //Continue Button
               MyButton(
-                fontSize: 16,
+                fontSize: 16.sp,
                 onTap: () => guestChat(context),
                 buttonText: 'Continue',
-                buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
+                buttoncolor: const Color(0xFF11100B),
                 buttonTextColor: const Color(0xFFEAE3D1),
               )
             ],

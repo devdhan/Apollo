@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/my_textfield.dart';
@@ -96,11 +97,11 @@ class _ResetPasswordTwoState extends State<ResetPasswordTwo> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF11100B),
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40))),
-        toolbarHeight: kToolbarHeight + 49,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40.r))),
+        toolbarHeight: (kToolbarHeight + 49).h,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 24.0),
+          padding: EdgeInsets.only(left: 24.w),
           child: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
             color: const Color(0xFFEAE3D1),
@@ -116,26 +117,26 @@ class _ResetPasswordTwoState extends State<ResetPasswordTwo> {
           child: Center(
             child: Column(
               children: [
-                const SizedBox(height: 60),
-                const Text(
+                SizedBox(height: 60.h),
+                Text(
                   'Reset Password',
                   style: TextStyle(
                     fontFamily: 'Montserrat',
-                    color: Color(0xFF11100B),
+                    color: const Color(0xFF11100B),
                     fontWeight: FontWeight.w700,
-                    fontSize: 32,
+                    fontSize: 32.sp,
                   ),
                 ),
-                const SizedBox(height: 3),
-                const Text('Enter your new password',
+                SizedBox(height: 3.h),
+                Text('Enter your new password',
                     style: TextStyle(
                       fontFamily: 'Montserrat',
-                      color: Color(0xFF000000),
+                      color: const Color(0xFF000000),
                       fontWeight: FontWeight.w500,
-                      fontSize: 16,
+                      fontSize: 16.sp,
                     )),
 
-                const SizedBox(height: 40),
+                SizedBox(height: 40.h),
 
                 // Password textfield
                 MyTextfield(
@@ -144,7 +145,7 @@ class _ResetPasswordTwoState extends State<ResetPasswordTwo> {
                   obscureText: true,
                   isPassword: true,
                 ),
-                const SizedBox(height: 15),
+                SizedBox(height: 15.h),
 
                 // Confirm password textfield
                 MyTextfield(
@@ -157,24 +158,24 @@ class _ResetPasswordTwoState extends State<ResetPasswordTwo> {
                 // Error message (if any)
                 if (errorMessage.isNotEmpty)
                   Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
+                    padding: EdgeInsets.only(top: 5.h),
                     child: Text(
                       errorMessage,
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: Colors.red,
-                          fontSize: 12,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
 
                 // Reset password button
                 MyButton(
                   onTap: () => resetPassword(context),
                   buttonText: 'Reset Password',
-                  fontSize: 16,
-                  buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
+                  fontSize: 16.sp,
+                  buttoncolor: const Color(0xFF11100B),
                   buttonTextColor: const Color(0xFFEAE3D1),
                 ),
               ],

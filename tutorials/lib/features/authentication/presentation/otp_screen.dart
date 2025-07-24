@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/otp_textfield_widget.dart';
@@ -90,11 +91,11 @@ class _OtpScreenState extends State<OtpScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF11100B),
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40))),
-        toolbarHeight: kToolbarHeight + 49,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40.r))),
+        toolbarHeight: (kToolbarHeight + 49).h,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 24.0),
+          padding: EdgeInsets.only(left: 24.w),
           child: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
             color: const Color(0xFFEAE3D1),
@@ -110,27 +111,27 @@ class _OtpScreenState extends State<OtpScreen> {
           child: Center(
             child: Column(
               children: [
-                const SizedBox(height: 60),
-                const Text(
+                SizedBox(height: 60.h),
+                Text(
                   'OTP',
                   style: TextStyle(
                     fontFamily: 'Montserrat',
                     color: Color(0xFF11100B),
                     fontWeight: FontWeight.w700,
-                    fontSize: 32,
+                    fontSize: 32.sp,
                   ),
                 ),
-                const SizedBox(height: 3),
-                const Text(
+                SizedBox(height: 3.h),
+                Text(
                   'Enter OTP to verify email',
                   style: TextStyle(
                     fontFamily: 'Montserrat',
                     color: Color(0xFF000000),
                     fontWeight: FontWeight.w500,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                   ),
                 ),
-                const SizedBox(height: 40),
+                SizedBox(height: 40.h),
 
                 // OTP TextField widget
                 OtpTextfieldWidget(
@@ -144,23 +145,23 @@ class _OtpScreenState extends State<OtpScreen> {
                 // Show OTP error
                 if (otpError.isNotEmpty)
                   Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
+                    padding: EdgeInsets.only(top: 5.h),
                     child: Text(
                       otpError,
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: Colors.red,
-                          fontSize: 10,
+                          fontSize: 10.sp,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
 
                 // Verify button
                 MyButton(
                   onTap: () => verifyOtp(context),
                   buttonText: 'Verify',
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   buttoncolor: const Color(0xFF11100B),
                   buttonTextColor: const Color(0xFFEAE3D1),
                 ),

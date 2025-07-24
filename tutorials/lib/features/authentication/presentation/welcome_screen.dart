@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/commons/my_button.dart';
-import 'package:tutorials/features/mainhomescreen/guest_homepage.dart';
+import 'package:tutorials/features/guestmode/presentation/guest_homepage.dart';
 import 'package:tutorials/features/authentication/presentation/sign_in.dart';
 import 'package:tutorials/features/authentication/presentation/sign_up.dart';
 
@@ -44,66 +45,66 @@ class WelcomeScreen extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  const SizedBox(height: 140),
-                  const Text(
+                  SizedBox(height: 140.h),
+                  Text(
                     'APOLLO',
                     style: TextStyle(
                       fontFamily: 'Vanguard',
-                      fontSize: 55,
+                      fontSize: 55.sp,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF11100B),
+                      color: const Color(0xFF11100B),
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  const Text(
+                  SizedBox(height: 8.h),
+                  Text(
                     'Let’s get started',
                     style: TextStyle(
                       fontFamily: 'Montserrat',
-                      fontSize: 23,
+                      fontSize: 23.sp,
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF000000),
+                      color: const Color(0xFF000000),
                     ),
                   ),
-                  const SizedBox(height: 65),
+                  SizedBox(height: 65.h),
                   MyButton(
                     onTap: () => signup(context),
                     buttonText: 'Sign up',
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     buttoncolor: const Color(0xFF11100B),
                     buttonTextColor: const Color(0xFFEAE3D1),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   MyButton(
                     onTap: () => signin(context),
                     buttonText: 'Continue with an account',
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     buttoncolor: const Color(0xFFEAE3D1),
                     buttonTextColor: const Color(0xFF11100B),
                   ),
-                  const SizedBox(height: 25),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 80.0),
+                  SizedBox(height: 25.h),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 80.w),
                     child: Row(
                       children: [
-                        Expanded(
+                        const Expanded(
                           child: Divider(
                             thickness: 1,
                             color: Colors.black,
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                          padding: EdgeInsets.symmetric(horizontal: 10.w),
                           child: Text(
                             'Or',
                             style: TextStyle(
                               fontFamily: 'Montserrat',
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
-                              color: Color(0xFF000000),
+                              color: const Color(0xFF000000),
                             ),
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                           child: Divider(
                             thickness: 1,
                             color: Colors.black,
@@ -112,27 +113,27 @@ class WelcomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   MyButton(
                     onTap: signino,
                     buttonText: 'Continue with Gmail',
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     buttoncolor: const Color(0xFFEAE3D1),
                     buttonTextColor: const Color(0xFF11100B),
                     buttonImage: Image.asset(
                       'assets/googlebtn_image.png',
-                      width: 30,
-                      height: 30,
+                      width: 30.w,
+                      height: 30.h,
                     ),
                   ),
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 25.0),
+                padding: EdgeInsets.only(bottom: 25.h),
                 child: MyButton(
                   onTap: () => guestMode(context),
                   buttonText: 'Guest mode',
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   buttoncolor: const Color(0xFF11100B),
                   buttonTextColor: const Color(0xFFEAE3D1),
                 ),

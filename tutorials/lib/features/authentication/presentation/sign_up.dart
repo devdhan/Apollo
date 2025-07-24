@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/my_textfield.dart';
@@ -153,9 +154,9 @@ class _SignUpState extends State<SignUp> {
         backgroundColor: const Color(0xFF11100B),
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40))),
-        toolbarHeight: kToolbarHeight + 49,
+        toolbarHeight: (kToolbarHeight + 49).h,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 24.0),
+          padding: EdgeInsets.only(left: 24.w),
           child: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
             color: const Color(0xFFEAE3D1),
@@ -172,39 +173,38 @@ class _SignUpState extends State<SignUp> {
           child: Center(
             child: Column(
               children: [
-                const SizedBox(height: 60),
-                const Text(
+                SizedBox(height: 60.h),
+                Text(
                   'Sign up',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
-                      color: Color(0xFF11100B),
-                      fontSize: 32,
+                      color: const Color(0xFF11100B),
+                      fontSize: 32.sp,
                       fontWeight: FontWeight.w700),
                 ),
-                const SizedBox(height: 3),
-                const Row(
+                SizedBox(height: 3.h),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'Create an account with ',
                       style: TextStyle(
                           fontFamily: 'Montserrat',
-                          color: Color(0xFF000000),
-                          fontSize: 16,
+                          color: const Color(0xFF000000),
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w500),
                     ),
                     Text(
                       'APOLLO ',
                       style: TextStyle(
                           fontFamily: 'Montserrat',
-                          color: Color.fromRGBO(0, 0, 0, 1),
-                          fontSize: 16,
+                          color: const Color(0xFF000000),
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w700),
                     ),
                   ],
                 ),
-                const SizedBox(height: 50),
-
+                SizedBox(height: 50.h),
                 // Email text field
                 MyTextfield(
                   controller: emailController,
@@ -214,12 +214,12 @@ class _SignUpState extends State<SignUp> {
                 // Show email error
                 if (emailError.isNotEmpty)
                   Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
+                    padding: EdgeInsets.only(top: 5.h),
                     child: Text(
                       emailError,
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: Colors.red,
-                          fontSize: 10,
+                          fontSize: 10.sp,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
@@ -236,18 +236,17 @@ class _SignUpState extends State<SignUp> {
                 // Show password error
                 if (passwordError.isNotEmpty)
                   Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
+                    padding: EdgeInsets.only(top: 5.h),
                     child: Text(
                       passwordError,
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: Colors.red,
-                          fontSize: 10,
+                          fontSize: 10.sp,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
 
                 const SizedBox(height: 25),
-
                 // Confirm Password text field
                 MyTextfield(
                   controller: confirmpasswordController,
@@ -258,22 +257,21 @@ class _SignUpState extends State<SignUp> {
                 // Show confirm password error
                 if (confirmPasswordError.isNotEmpty)
                   Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
+                    padding: EdgeInsets.only(top: 5.h),
                     child: Text(
                       confirmPasswordError,
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: Colors.red,
-                          fontSize: 10,
+                          fontSize: 10.sp,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
-                const SizedBox(height: 30),
-
+                SizedBox(height: 30.h),
                 // Sign up button
                 MyButton(
                   onTap: () => signUpUser(context),
                   buttonText: 'Sign up',
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   buttoncolor: const Color(0xFF11100B),
                   buttonTextColor: const Color(0xFFEAE3D1),
                 ),

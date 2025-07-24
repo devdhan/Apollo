@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:async';
 
 import 'package:tutorials/features/authentication/presentation/welcome_screen.dart';
@@ -53,13 +54,13 @@ class _SplashScreenState extends State<SplashScreen>
       body: Center(
         child: SlideTransition(
           position: _animation,
-          child: const Text(
+          child: Text(
             'APOLLO',
             style: TextStyle(
               fontFamily: 'Vanguard',
-              fontSize: 57,
+              fontSize: 57.sp,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF11100B),
+              color: const Color(0xFF11100B),
             ),
           ),
         ),
