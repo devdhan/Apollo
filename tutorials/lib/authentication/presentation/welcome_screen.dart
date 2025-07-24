@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorials/components/my_button.dart';
+import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/pages/guest_homepage.dart';
 import 'package:tutorials/authentication/presentation/sign_in.dart';
 import 'package:tutorials/authentication/presentation/sign_up.dart';

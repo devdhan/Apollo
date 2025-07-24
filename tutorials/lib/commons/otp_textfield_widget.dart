@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OtpTextfieldWidget extends StatefulWidget {
   final Function(String) onCodeChanged; // Callback to pass OTP to parent
@@ -67,11 +68,11 @@ class CustomField extends StatelessWidget {
         ],
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: const BorderSide(color: Color(0xFF11100B)),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: const BorderSide(color: Color(0xFF11100B)),
           ),
         ),

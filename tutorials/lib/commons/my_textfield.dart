@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyTextfield extends StatefulWidget {
   final TextEditingController controller;
@@ -46,7 +47,7 @@ class _MyTextfieldState extends State<MyTextfield> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 42.0),
+      padding: EdgeInsets.symmetric(horizontal: 42.0.h),
       child: TextField(
         controller: widget.controller,
         obscureText: widget.isPassword ? _obscureText : widget.obscureText,
@@ -58,11 +59,11 @@ class _MyTextfieldState extends State<MyTextfield> {
             borderSide: BorderSide(color: Color(0xFF11100B)),
           ),
           hintText: widget.hintText,
-          hintStyle: const TextStyle(
+          hintStyle: TextStyle(
             fontFamily: 'Montserrat',
-            color: Color(0x8F000000),
+            color: const Color(0x8F000000),
             fontWeight: FontWeight.w500,
-            fontSize: 15,
+            fontSize: 15.sp,
           ),
           suffixIcon: widget.isPassword && _hasText
               ? IconButton(

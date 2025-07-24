@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/pages/about_app.dart';
-import 'package:tutorials/components/logout_dialog.dart';
+import 'package:tutorials/commons/logout_dialog.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});

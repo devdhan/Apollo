@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tutorials/components/bottom_textfield.dart';
-import 'package:tutorials/components/my_button.dart';
+import 'package:tutorials/commons/bottom_textfield.dart';
+import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/pages/about_app.dart';
-import 'package:tutorials/components/custom_drawer.dart';
+import 'package:tutorials/commons/custom_drawer.dart';
 import 'package:tutorials/pages/chat_two.dart';
 //import 'package:tutorials/pages/search_history.dart';
 

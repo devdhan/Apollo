@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tutorials/components/logout_dialog.dart';
-import 'package:tutorials/components/my_button.dart';
+import 'package:tutorials/commons/logout_dialog.dart';
+import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/pages/about_app.dart';
-import 'package:tutorials/components/bottom_textfield.dart';
+import 'package:tutorials/commons/bottom_textfield.dart';
 
 class GuestChat extends StatefulWidget {
   const GuestChat({super.key});

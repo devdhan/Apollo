@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutorials/components/bottom_textfield.dart';
-import 'package:tutorials/components/custom_drawer.dart';
+import 'package:tutorials/commons/bottom_textfield.dart';
+import 'package:tutorials/commons/custom_drawer.dart';
 import 'package:tutorials/pages/chat_one.dart';
 import 'package:tutorials/pages/about_app.dart';
 

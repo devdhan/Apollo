@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:tutorials/components/my_button.dart';
-import 'package:tutorials/components/my_textfield.dart';
+import 'package:tutorials/commons/my_button.dart';
+import 'package:tutorials/commons/my_textfield.dart';
 import 'package:tutorials/authentication/presentation/otp_screen.dart';
 
 class ResetPasswordOne extends StatefulWidget {
