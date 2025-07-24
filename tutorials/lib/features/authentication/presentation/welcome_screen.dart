@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/commons/my_button.dart';
-import 'package:tutorials/pages/guest_homepage.dart';
+import 'package:tutorials/features/mainhomescreen/guest_homepage.dart';
 import 'package:tutorials/features/authentication/presentation/sign_in.dart';
 import 'package:tutorials/features/authentication/presentation/sign_up.dart';
 

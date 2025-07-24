@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorials/pages/about_app.dart';
+import 'package:tutorials/features/mainhomescreen/about_app.dart';
 import 'package:tutorials/commons/logout_dialog.dart';
 
 class CustomDrawer extends StatelessWidget {

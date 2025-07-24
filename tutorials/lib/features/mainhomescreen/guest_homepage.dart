@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/commons/my_button.dart';
-import 'package:tutorials/pages/guest_chat.dart';
+import 'package:tutorials/features/mainhomescreen/guest_chat.dart';
 
 class GuestHomepage extends StatelessWidget {
   const GuestHomepage({super.key});

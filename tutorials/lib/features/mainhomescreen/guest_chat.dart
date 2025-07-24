@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/commons/logout_dialog.dart';
 import 'package:tutorials/commons/my_button.dart';
-import 'package:tutorials/pages/about_app.dart';
+import 'package:tutorials/features/mainhomescreen/about_app.dart';
 import 'package:tutorials/commons/bottom_textfield.dart';
 
 class GuestChat extends StatefulWidget {

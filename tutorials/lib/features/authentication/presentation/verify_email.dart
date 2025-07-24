@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/commons/my_button.dart';
-import 'package:tutorials/pages/chat_one.dart';
+import 'package:tutorials/features/mainhomescreen/chat_one.dart';
 
 class VerifyEmail extends StatelessWidget {
   const VerifyEmail({super.key});

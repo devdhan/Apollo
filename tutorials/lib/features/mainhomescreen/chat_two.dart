@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/commons/bottom_textfield.dart';
 import 'package:tutorials/commons/custom_drawer.dart';
-import 'package:tutorials/pages/chat_one.dart';
-import 'package:tutorials/pages/about_app.dart';
+import 'package:tutorials/features/mainhomescreen/chat_one.dart';
+import 'package:tutorials/features/mainhomescreen/about_app.dart';
 
 class ChatTwo extends StatefulWidget {
   const ChatTwo({super.key});

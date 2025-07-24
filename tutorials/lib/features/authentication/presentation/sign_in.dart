@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/my_textfield.dart';
-import 'package:tutorials/pages/chat_one.dart';
+import 'package:tutorials/features/mainhomescreen/chat_one.dart';
 import 'package:tutorials/features/authentication/presentation/reset_password_one.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
