@@ -53,29 +53,88 @@ class Profile extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 0).w,
-          child: Container(
-            height: 36.98.h,
-            width: 400.w,
-            decoration: BoxDecoration(
-                color: Colors.black,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.all(Radius.circular(5.52.r))),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 12.33.w),
-                  child: Text(
-                    'Theme',
-                    style: TextStyle(
-                        color: const Color(0xFFEAE3D1),
-                        fontSize: 10.36.sp,
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.start,
-                  ),
+          child: Column(
+            children: [
+              Container(
+                height: 36.98.h,
+                width: 400.w,
+                decoration: BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.all(Radius.circular(5.52.r))),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 12.33.w),
+                      child: Text(
+                        'Theme',
+                        style: TextStyle(
+                            color: const Color(0xFFEAE3D1),
+                            fontSize: 10.36.sp,
+                            fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 15.w,
+              ),
+              Container(
+                height: 36.98.h,
+                width: 400.w,
+                decoration: BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.all(Radius.circular(5.52.r))),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 12.33.w),
+                      child: Text(
+                        'Bolaji Daniel Olanrewaju',
+                        style: TextStyle(
+                            color: const Color(0xFFEAE3D1),
+                            fontSize: 10.36.sp,
+                            fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 15.w,
+              ),
+              Container(
+                height: 36.98.h,
+                width: 400.w,
+                decoration: BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.all(Radius.circular(5.52.r))),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 12.33.w),
+                      child: Text(
+                        'danielbolaji99@gmail.com',
+                        style: TextStyle(
+                            color: const Color(0xFFEAE3D1),
+                            fontSize: 10.36.sp,
+                            fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                    Spacer(),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),

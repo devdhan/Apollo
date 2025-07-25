@@ -1,3 +1,4 @@
+import 'package:avatar_plus/avatar_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/features/homescreen/mainhomescreen/presentation/about_app.dart';
@@ -17,13 +18,36 @@ class CustomDrawer extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 50.h, left: 30.w),
-                child: Text(
-                  'Recents',
-                  style: TextStyle(
-                    fontSize: 26.sp,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w700,
-                    color: const Color(0xFF000000),
+                child: GestureDetector(
+                  // onTap: () {
+                  //   Navigator.pop(context);
+                  //   Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => const Profile(),
+                  //     ),
+                  //   );
+                  // },
+                  child: Row(
+                    children: [
+                      AvatarPlus(
+                        'Daniel',
+                        height: 35.h,
+                        width: 35,
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Text(
+                        'Recents',
+                        style: TextStyle(
+                          fontSize: 26.sp,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w700,
+                          color: const Color(0xFF000000),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
