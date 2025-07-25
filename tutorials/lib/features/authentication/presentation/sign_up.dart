@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tutorials/auth_service.dart';
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/my_textfield.dart';
-import 'package:tutorials/features/authentication/presentation/verify_email.dart';
+import '../../homescreen/mainhomescreen/presentation/chat_one.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -21,6 +23,7 @@ class _SignUpState extends State<SignUp> {
   String emailError = '';
   String passwordError = '';
   String confirmPasswordError = '';
+  String generalError = '';
 
   // Email validation regex
   bool isValidEmail(String email) {
@@ -40,6 +43,7 @@ class _SignUpState extends State<SignUp> {
       emailError = '';
       passwordError = '';
       confirmPasswordError = '';
+      generalError = '';
     });
 
     // Validate email and password fields
@@ -86,12 +90,21 @@ class _SignUpState extends State<SignUp> {
 
     // Check if widget is still mounted before navigation
     if (!mounted) return;
-
+    try {
+      await authService.value.createAccount(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        generalError = e.message ?? 'Sign Up Failed';
+      });
+    }
     //Navigate to Verify Email
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
-        builder: (context) => const VerifyEmail(),
+        builder: (context) => const ChatOne(),
       ),
       (route) => false,
     );
@@ -233,6 +246,20 @@ class _SignUpState extends State<SignUp> {
                   buttoncolor: const Color(0xFF11100B),
                   buttonTextColor: const Color(0xFFEAE3D1),
                 ),
+                // Display general error message
+                if (generalError.isNotEmpty)
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 42.w, vertical: 5.h),
+                    child: Text(
+                      generalError,
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),

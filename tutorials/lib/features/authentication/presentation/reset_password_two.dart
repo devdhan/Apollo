@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/my_textfield.dart';
-import 'package:tutorials/features/homescreen/mainhomescreen/presentation/chat_one.dart';
+import 'package:tutorials/commons/reset_dialog.dart';
 
 class ResetPasswordTwo extends StatefulWidget {
   const ResetPasswordTwo({super.key});
@@ -47,13 +47,7 @@ class _ResetPasswordTwoState extends State<ResetPasswordTwo> {
       });
       return;
     }
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ChatOne(),
-      ),
-      (route) => false,
-    );
+    showResetDialog(context);
   }
 
   @override

@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tutorials/auth_service.dart';
 import 'package:tutorials/features/authentication/presentation/welcome_screen.dart';
 
 void showLogoutDialog(BuildContext context) {
@@ -55,14 +57,19 @@ void showLogoutDialog(BuildContext context) {
                 ),
               ),
               TextButton(
-                onPressed: () {
+                onPressed: () async {
                   Navigator.of(context).pop();
+                  try {
+                    await authService.value.signOut();
+                  } on FirebaseAuthException catch (e) {
+                    print(e);
+                  }
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const WelcomeScreen(),
                     ),
-                    (Route<dynamic> route) => false, // Remove all routes
+                    (Route<dynamic> route) => false,
                   ); // Navigate to WelcomeScreen
                 },
                 child: SizedBox(

@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'apollo-c9f09.firebasestorage.app',
     iosBundleId: 'com.example.tutorials',
   );
+
 }

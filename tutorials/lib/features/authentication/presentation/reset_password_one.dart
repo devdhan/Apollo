@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tutorials/auth_service.dart';
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/my_textfield.dart';
-import 'package:tutorials/features/authentication/presentation/otp_screen.dart';
+import 'package:tutorials/features/authentication/presentation/reset_sent_page.dart';
 
 class ResetPasswordOne extends StatefulWidget {
   const ResetPasswordOne({super.key});
@@ -31,11 +33,20 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
       });
       return;
     }
+    try {
+      await authService.value.resetPassword(
+        email: email,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        emailError = e.message ?? 'Failed to reset Password';
+      });
+    }
     // Function to navigate to OTP screen with the email
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const OtpScreen(),
+        builder: (context) => const ResetSentPage(),
       ),
     );
   }

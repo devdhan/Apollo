@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tutorials/auth_layout.dart';
 import 'dart:async';
-
-import 'package:tutorials/features/authentication/presentation/welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -27,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _animation = Tween<Offset>(
       begin: Offset.zero,
-      end: const Offset(0.0, -2.0),
+      end: const Offset(-3.0, 0.0),
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     // Delay for 3 seconds, then start the animation and navigate to WelcomeScreen
@@ -35,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen>
       _controller.forward().then((_) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+          MaterialPageRoute(builder: (context) => const AuthLayout()),
         );
       });
     });
