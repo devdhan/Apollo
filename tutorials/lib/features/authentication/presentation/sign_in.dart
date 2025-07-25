@@ -4,8 +4,6 @@ import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/my_textfield.dart';
 import 'package:tutorials/features/homescreen/mainhomescreen/presentation/chat_one.dart';
 import 'package:tutorials/features/authentication/presentation/reset_password_one.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -19,18 +17,15 @@ class _SignInState extends State<SignIn> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // Secure storage instance to store access token
-  final storage = const FlutterSecureStorage();
-
   // Variables to store error messages
   String emailError = '';
   String passwordError = '';
   String generalError = '';
 
   // Function to handle sign-in
-  Future<void> signIn() async {
+  Future<void> signIn(BuildContext context) async {
     final email = emailController.text.trim();
-    final password = passwordController.text.trim();
+    final password = passwordController.text;
 
     setState(() {
       emailError = '';
@@ -49,41 +44,11 @@ class _SignInState extends State<SignIn> {
       });
       return;
     }
-
-    // Show loading indicator while waiting for response
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return const Center(child: CircularProgressIndicator());
-      },
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const ChatOne()),
+      (route) => false,
     );
-
-    try {
-      final response = await Dio().post(
-        'https://apollo-server-5yna.onrender.com/v1/auth/signin',
-        data: {'email': email, 'password': password},
-      );
-
-      if (response.statusCode == 200) {
-        // On success, store the access token
-        final token = response.data['response']['data']['token'];
-        await storage.write(key: 'access_token', value: token);
-        Navigator.of(context).pop(); // Close the loading dialog
-        chat(); // Navigate to ChatOne page
-      } else {
-        // Handle failure
-        Navigator.of(context).pop(); // Close the loading dialog
-        setState(() {
-          generalError = response.data['message'] ?? 'Login failed';
-        });
-      }
-    } catch (e) {
-      Navigator.of(context).pop(); // Close the loading dialog
-      setState(() {
-        generalError = 'Error occurred during $e';
-      });
-    }
   }
 
   void resetPasswordOne() {
@@ -94,13 +59,11 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  void chat() {
-    // Navigate to ChatOne page
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => const ChatOne()),
-      (Route<dynamic> route) => false,
-    );
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -108,8 +71,8 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF11100B),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40.r)),
         ),
         toolbarHeight: (kToolbarHeight + 49).h,
         leading: Padding(
@@ -241,7 +204,7 @@ class _SignInState extends State<SignIn> {
 
                 // Sign in button
                 MyButton(
-                  onTap: signIn, // Call the API when button is pressed
+                  onTap: () => signIn(context),
                   buttonText: 'Sign in',
                   fontSize: 16.sp,
                   buttoncolor: const Color(0xFF11100B),

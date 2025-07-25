@@ -43,7 +43,7 @@ class GuestHomepage extends StatelessWidget {
                 height: 70.h,
               ),
               Center(
-                child: Image.asset('assets/guessimage.png'),
+                child: Image.asset('assets/images/guessimage.png'),
               ),
               SizedBox(
                 height: 10.h,

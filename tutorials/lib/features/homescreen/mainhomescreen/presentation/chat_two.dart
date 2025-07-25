@@ -1,3 +1,4 @@
+import 'package:avatar_plus/avatar_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/commons/bottom_textfield.dart';
@@ -79,11 +80,13 @@ class _ChatTwoState extends State<ChatTwo> {
             title: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Image.asset(
-                  'assets/blankcircle.png',
+                AvatarPlus(
+                  'Daniel',
+                  height: 35.h,
+                  width: 35.w,
                 ),
                 SizedBox(
-                  width: 15.w,
+                  width: 10.w,
                 ),
                 Text(
                   'APOLLO ChatBox',
@@ -117,7 +120,7 @@ class _ChatTwoState extends State<ChatTwo> {
         children: [
           // Background image
           Image.asset(
-            'assets/image.png',
+            'assets/images/image.png',
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
@@ -168,8 +171,10 @@ class _ChatTwoState extends State<ChatTwo> {
                     padding: EdgeInsets.symmetric(horizontal: 15.w),
                     child: Row(
                       children: [
-                        Image.asset(
-                          'assets/blankcircle.png',
+                        AvatarPlus(
+                          'Chatbot',
+                          height: 35.h,
+                          width: 35.w,
                         ),
                       ],
                     ),

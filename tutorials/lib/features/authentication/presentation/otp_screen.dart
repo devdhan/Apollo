@@ -1,15 +1,11 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:http/http.dart' as http;
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/otp_textfield_widget.dart';
 import 'package:tutorials/features/authentication/presentation/reset_password_two.dart';
 
 class OtpScreen extends StatefulWidget {
-  final String email; // Receive email from the previous screen
-
-  const OtpScreen({required this.email, super.key});
+  const OtpScreen({super.key});
 
   @override
   _OtpScreenState createState() => _OtpScreenState();
@@ -18,16 +14,6 @@ class OtpScreen extends StatefulWidget {
 class _OtpScreenState extends State<OtpScreen> {
   String otp = '';
   String otpError = '';
-
-  // Function to navigate to reset password screen
-  void navigateToResetPassword(BuildContext context, String email, String otp) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ResetPasswordTwo(email: email, otp: otp),
-      ),
-    );
-  }
 
   // Function to verify OTP
   Future<void> verifyOtp(BuildContext context) async {
@@ -41,49 +27,13 @@ class _OtpScreenState extends State<OtpScreen> {
       });
       return;
     }
-
-    try {
-      final url =
-          Uri.parse('https://apollo-server-5yna.onrender.com/auth/verify-otp');
-
-      final Map<String, dynamic> body = {
-        'email': widget.email,
-        'otp': otp,
-      };
-
-      final response = await http.post(
-        url,
-        headers: <String, String>{
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode(body),
-      );
-
-      if (response.statusCode == 201) {
-        final responseData = jsonDecode(response.body);
-        if (responseData['response']['status'] == true) {
-          // OTP verified, navigate to reset password screen
-          navigateToResetPassword(context, widget.email, otp);
-        } else if (response.statusCode == 409) {
-          // Invalid OTP or bad request
-          setState(() {
-            otpError = 'Invalid otp';
-          });
-        } //else {
-        //setState(() {
-        //otpError = responseData['response']['message'];
-        //});
-        //}
-      } else {
-        setState(() {
-          otpError = 'Failed to verify OTP. Please try again later.';
-        });
-      }
-    } catch (e) {
-      setState(() {
-        otpError = 'An error occurred: $e';
-      });
-    }
+    // Function to navigate to reset password screen
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ResetPasswordTwo(),
+      ),
+    );
   }
 
   @override
@@ -116,7 +66,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   'OTP',
                   style: TextStyle(
                     fontFamily: 'Montserrat',
-                    color: Color(0xFF11100B),
+                    color: const Color(0xFF11100B),
                     fontWeight: FontWeight.w700,
                     fontSize: 32.sp,
                   ),
@@ -126,7 +76,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   'Enter OTP to verify email',
                   style: TextStyle(
                     fontFamily: 'Montserrat',
-                    color: Color(0xFF000000),
+                    color: const Color(0xFF000000),
                     fontWeight: FontWeight.w500,
                     fontSize: 16.sp,
                   ),

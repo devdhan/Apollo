@@ -16,13 +16,13 @@ void showLogoutDialog(BuildContext context) {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Image.asset('assets/ion_log-out.png'),
+              Image.asset('assets/images/ion_log-out.png'),
               SizedBox(height: 10.h),
               Text(
                 'Oh no! You’re leaving...\nAre you sure?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Color(0xFF000000),
+                  color: const Color(0xFF000000),
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'Montserrat',
@@ -46,7 +46,7 @@ void showLogoutDialog(BuildContext context) {
                       child: Text(
                         'Nah, just kidding',
                         style: TextStyle(
-                            color: Color(0xFFEAE3D1),
+                            color: const Color(0xFFEAE3D1),
                             fontSize: 12.sp,
                             fontFamily: 'Montserrat'),
                       ),
@@ -78,7 +78,7 @@ void showLogoutDialog(BuildContext context) {
                       child: Text(
                         'Yes, log me out',
                         style: TextStyle(
-                            color: Color(0xFF11100B),
+                            color: const Color(0xFF11100B),
                             fontSize: 12.sp,
                             fontFamily: 'Montserrat'),
                       ),

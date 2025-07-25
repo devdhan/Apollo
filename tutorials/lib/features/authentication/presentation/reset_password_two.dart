@@ -1,16 +1,11 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:http/http.dart' as http;
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/my_textfield.dart';
-import 'package:tutorials/features/authentication/presentation/sign_in.dart';
+import 'package:tutorials/features/homescreen/mainhomescreen/presentation/chat_one.dart';
 
 class ResetPasswordTwo extends StatefulWidget {
-  final String email;
-  final String otp;
-
-  const ResetPasswordTwo({required this.email, required this.otp, super.key});
+  const ResetPasswordTwo({super.key});
 
   @override
   _ResetPasswordTwoState createState() => _ResetPasswordTwoState();
@@ -31,6 +26,12 @@ class _ResetPasswordTwoState extends State<ResetPasswordTwo> {
       errorMessage = '';
     });
 
+    if (password.isEmpty) {
+      setState(() {
+        errorMessage = 'Enter a new password';
+      });
+      return;
+    }
     // Validate if passwords match
     if (password != confirmPassword) {
       setState(() {
@@ -46,50 +47,13 @@ class _ResetPasswordTwoState extends State<ResetPasswordTwo> {
       });
       return;
     }
-
-    try {
-      final url = Uri.parse(
-          'https://apollo-server-5yna.onrender.com/auth/reset-password');
-
-      final Map<String, dynamic> body = {
-        'email': widget.email,
-        'otp': widget.otp,
-        'newPassword': password,
-      };
-
-      // Send POST request to reset password
-      final response = await http.post(
-        url,
-        headers: <String, String>{
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode(body),
-      );
-
-      if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body);
-        if (responseData['response']['status'] == true) {
-          // Password reset successful, navigate to sign-in screen
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const SignIn()),
-          );
-        } else {
-          setState(() {
-            errorMessage =
-                'Failed to reset password: ${responseData['response']['message']}';
-          });
-        }
-      } else {
-        setState(() {
-          errorMessage = 'Failed to reset password: ${response.body}';
-        });
-      }
-    } catch (e) {
-      setState(() {
-        errorMessage = 'An error occurred: $e';
-      });
-    }
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ChatOne(),
+      ),
+      (route) => false,
+    );
   }
 
   @override

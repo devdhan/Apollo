@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:http/http.dart' as http;
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/my_textfield.dart';
 import 'package:tutorials/features/authentication/presentation/verify_email.dart';
@@ -24,16 +22,16 @@ class _SignUpState extends State<SignUp> {
   String passwordError = '';
   String confirmPasswordError = '';
 
-  // Function to verify email (navigate to another page)
-  void verifyEmail(BuildContext context) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const VerifyEmail()),
-    );
+  // Email validation regex
+  bool isValidEmail(String email) {
+    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
   }
 
-  Future<void> signUpUser(BuildContext context) async {
-    final String email = emailController.text;
+  Future<void> verifyEmail(BuildContext context) async {
+    // Check if widget is still mounted before proceeding
+    if (!mounted) return;
+
+    final String email = emailController.text.trim();
     final String password = passwordController.text;
     final String confirmPassword = confirmpasswordController.text;
 
@@ -45,106 +43,66 @@ class _SignUpState extends State<SignUp> {
     });
 
     // Validate email and password fields
-    if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+    bool hasErrors = false;
+
+    if (email.isEmpty) {
       setState(() {
-        if (email.isEmpty) {
-          emailError = '*Email cannot be empty*';
-        }
-        if (password.isEmpty) {
-          passwordError = '*Password cannot be empty*';
-        }
-        if (confirmPassword.isEmpty) {
-          confirmPasswordError = '*Confirm password cannot be empty*';
-        }
+        emailError = '*Email cannot be empty*';
       });
-      return;
+      hasErrors = true;
+    } else if (!isValidEmail(email)) {
+      setState(() {
+        emailError = '*Please enter a valid email*';
+      });
+      hasErrors = true;
     }
 
-    // Check if password and confirm password match
-    if (password != confirmPassword) {
+    if (password.isEmpty) {
+      setState(() {
+        passwordError = '*Password cannot be empty*';
+      });
+      hasErrors = true;
+    } else if (password.length < 6) {
+      setState(() {
+        passwordError = '*Password must be at least 6 characters*';
+      });
+      hasErrors = true;
+    }
+
+    if (confirmPassword.isEmpty) {
+      setState(() {
+        confirmPasswordError = '*Confirm password cannot be empty*';
+      });
+      hasErrors = true;
+    } else if (password != confirmPassword) {
       setState(() {
         confirmPasswordError = '*Passwords do not match*';
       });
-      return;
+      hasErrors = true;
     }
 
-    try {
-      final signUpUrl =
-          Uri.parse('https://apollo-server-5yna.onrender.com/v1/user/signup');
+    // If there are validation errors, don't proceed
+    if (hasErrors) return;
 
-      // Prepare the request body for signup
-      final Map<String, dynamic> signUpBody = {
-        'email': email,
-        'password': password,
-      };
+    // Check if widget is still mounted before navigation
+    if (!mounted) return;
 
-      // Send a POST request to the server to sign up
-      final signUpResponse = await http.post(
-        signUpUrl,
-        headers: <String, String>{
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode(signUpBody),
-      );
+    //Navigate to Verify Email
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const VerifyEmail(),
+      ),
+      (route) => false,
+    );
+  }
 
-      // Handle signup response
-      if (signUpResponse.statusCode == 201) {
-        // Success response: user created
-        final responseData = jsonDecode(signUpResponse.body);
-        if (responseData['status'] == true) {
-          // Now send the verification email
-          final verifyEmailUrl = Uri.parse(
-              'https://apollo-server-5yna.onrender.com/v1/auth/send-verification-email');
-
-          // Prepare request body for email verification
-          final Map<String, dynamic> verifyEmailBody = {
-            'email': email,
-          };
-
-          // Send a POST request to send verification email
-          final verifyEmailResponse = await http.post(
-            verifyEmailUrl,
-            headers: <String, String>{
-              'Content-Type': 'application/json',
-            },
-            body: jsonEncode(verifyEmailBody),
-          );
-
-          // Handle verification email response
-          if (verifyEmailResponse.statusCode == 201) {
-            final verificationResponseData =
-                jsonDecode(verifyEmailResponse.body);
-            if (verificationResponseData['response']['status'] == true) {
-              // Navigate to Verify Email page
-              verifyEmail(context);
-            } else {
-              setState(() {
-                emailError =
-                    'Failed to send verification email: ${verificationResponseData['response']['message']}';
-              });
-            }
-          } else {
-            setState(() {
-              emailError =
-                  'Failed to send verification email: ${verifyEmailResponse.body}';
-            });
-          }
-        }
-      } else if (signUpResponse.statusCode == 409) {
-        // Email already exists
-        setState(() {
-          emailError = 'Email already exists';
-        });
-      } else {
-        setState(() {
-          emailError = 'Failed to sign up: ${signUpResponse.body}';
-        });
-      }
-    } catch (e) {
-      setState(() {
-        emailError = 'An error occurred: $e';
-      });
-    }
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmpasswordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -152,8 +110,8 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF11100B),
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40))),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40.r))),
         toolbarHeight: (kToolbarHeight + 49).h,
         leading: Padding(
           padding: EdgeInsets.only(left: 24.w),
@@ -269,7 +227,7 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(height: 30.h),
                 // Sign up button
                 MyButton(
-                  onTap: () => signUpUser(context),
+                  onTap: () => verifyEmail(context),
                   buttonText: 'Sign up',
                   fontSize: 16.sp,
                   buttoncolor: const Color(0xFF11100B),

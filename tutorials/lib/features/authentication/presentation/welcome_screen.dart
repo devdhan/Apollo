@@ -121,7 +121,7 @@ class WelcomeScreen extends StatelessWidget {
                     buttoncolor: const Color(0xFFEAE3D1),
                     buttonTextColor: const Color(0xFF11100B),
                     buttonImage: Image.asset(
-                      'assets/googlebtn_image.png',
+                      'assets/images/googlebtn_image.png',
                       width: 30.w,
                       height: 30.h,
                     ),

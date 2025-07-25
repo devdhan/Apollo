@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:http/http.dart' as http;
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/commons/my_textfield.dart';
 import 'package:tutorials/features/authentication/presentation/otp_screen.dart';
@@ -17,17 +15,9 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
   final emailController = TextEditingController();
   String emailError = '';
 
-  // Function to navigate to OTP screen with the email
-  void navigateToOtpScreen(BuildContext context, String email) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => OtpScreen(email: email)),
-    );
-  }
-
   // Function to send OTP
   Future<void> sendOtp(BuildContext context) async {
-    final String email = emailController.text;
+    final String email = emailController.text.trim();
 
     // Reset error message
     setState(() {
@@ -41,51 +31,13 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
       });
       return;
     }
-
-    try {
-      final url =
-          Uri.parse('https://apollo-server-5yna.onrender.com/auth/send-otp');
-
-      // Prepare the request body
-      final Map<String, dynamic> body = {
-        'email': email,
-      };
-
-      // Send POST request
-      final response = await http.post(
-        url,
-        headers: <String, String>{
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode(body),
-      );
-
-      // Handle response
-      if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body);
-        if (responseData['response']['status'] == true) {
-          // OTP sent successfully, navigate to OTP screen
-          navigateToOtpScreen(context, email);
-        } else {
-          setState(() {
-            emailError =
-                'Failed to send OTP: ${responseData['response']['message']}';
-          });
-        }
-      } else if (response.statusCode == 404) {
-        setState(() {
-          emailError = 'User not found';
-        });
-      } else {
-        setState(() {
-          emailError = 'Failed to send OTP. Please try again later.';
-        });
-      }
-    } catch (e) {
-      setState(() {
-        emailError = 'An error occurred: $e';
-      });
-    }
+    // Function to navigate to OTP screen with the email
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const OtpScreen(),
+      ),
+    );
   }
 
   @override

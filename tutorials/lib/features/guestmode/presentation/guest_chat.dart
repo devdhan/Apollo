@@ -1,3 +1,4 @@
+import 'package:avatar_plus/avatar_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/commons/logout_dialog.dart';
@@ -71,11 +72,13 @@ class _GuestChatState extends State<GuestChat> {
             title: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Image.asset(
-                  'assets/blankcircle.png',
+                AvatarPlus(
+                  "Guest",
+                  height: 35.h,
+                  width: 35.w,
                 ),
                 SizedBox(
-                  width: 15.w,
+                  width: 10.w,
                 ),
                 Text(
                   'APOLLO ChatBox',
@@ -195,9 +198,9 @@ class _GuestChatState extends State<GuestChat> {
       backgroundColor: const Color(0xFFEAE3D1),
       body: SafeArea(
         child: Stack(
-          children: <Widget>[
+          children: [
             Image.asset(
-              'assets/image.png',
+              'assets/images/image.png',
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,

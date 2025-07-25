@@ -8,9 +8,12 @@ class VerifyEmail extends StatelessWidget {
 
   void chat(BuildContext context) {
     // Navigate to VerifyEmail page
-    Navigator.push(
+    Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => const ChatOne()),
+      MaterialPageRoute(
+        builder: (context) => const ChatOne(),
+      ),
+      (route) => false,
     );
   }
 
@@ -42,7 +45,7 @@ class VerifyEmail extends StatelessWidget {
                 height: 70.h,
               ),
               Center(
-                child: Image.asset('assets/verify_email.png'),
+                child: Image.asset('assets/images/verify_email.png'),
               ),
 
               //Verify email text
@@ -101,7 +104,7 @@ class VerifyEmail extends StatelessWidget {
                 onTap: () => chat(context),
                 buttonText: 'Confirm email',
                 fontSize: 16.sp,
-                buttoncolor: const Color.fromRGBO(17, 16, 11, 1),
+                buttoncolor: const Color(0xFF11100B),
                 buttonTextColor: const Color(0xFFEAE3D1),
               )
             ],
