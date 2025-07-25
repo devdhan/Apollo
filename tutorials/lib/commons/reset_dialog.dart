@@ -50,7 +50,7 @@ void showResetDialog(BuildContext context) {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => ChatOne()),
-                    (route) => false,
+                    (route) => false, //Navigate to Chat
                   );
                 },
                 child: SizedBox(
