@@ -22,7 +22,7 @@ environment:
   sdk: ">=3.4.3 <4.0.0"
 
 dependencies:
-  http: 1.2.2
+  http: ^1.4.0
   flutter_secure_storage: ^6.0.0
   flutter:
     sdk: flutter

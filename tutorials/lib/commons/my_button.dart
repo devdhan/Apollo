@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MyButton extends StatelessWidget {
+class MyButton extends StatefulWidget {
   final VoidCallback onTap;
   final String buttonText;
   final Color buttoncolor;
@@ -20,14 +20,21 @@ class MyButton extends StatelessWidget {
   });
 
   @override
+  State<MyButton> createState() => _MyButtonState();
+}
+
+class _MyButtonState extends State<MyButton> {
+  bool isloading = false;
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
         margin: EdgeInsets.symmetric(horizontal: 42.w),
         decoration: BoxDecoration(
-          color: buttoncolor,
+          color: widget.buttoncolor,
           border: Border.all(
             width: 1.w,
             color: const Color(0xFF11100B),
@@ -35,20 +42,20 @@ class MyButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(7.r),
         ),
         child: Center(
-          child: buttonImage != null
+          child: widget.buttonImage != null
               ? Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    buttonImage!,
+                    widget.buttonImage!,
                     SizedBox(width: 8.w),
                     Flexible(
                       child: Text(
-                        buttonText,
+                        widget.buttonText,
                         style: TextStyle(
                           fontFamily: 'Montserrat',
-                          color: buttonTextColor,
-                          fontSize: fontSize,
+                          color: widget.buttonTextColor,
+                          fontSize: widget.fontSize,
                           fontWeight: FontWeight.w500,
                         ),
                         textAlign: TextAlign.center,
@@ -57,11 +64,11 @@ class MyButton extends StatelessWidget {
                   ],
                 )
               : Text(
-                  buttonText,
+                  widget.buttonText,
                   style: TextStyle(
                     fontFamily: 'Montserrat',
-                    color: buttonTextColor,
-                    fontSize: fontSize,
+                    color: widget.buttonTextColor,
+                    fontSize: widget.fontSize,
                     fontWeight: FontWeight.w500,
                   ),
                   textAlign: TextAlign.center,
