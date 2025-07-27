@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottomTextField extends StatefulWidget {
   final TextEditingController messageController;
   final FocusNode focusNode;
+  final Function(String) onSendMessage;
 
   const BottomTextField({
     super.key,
     required this.messageController,
     required this.focusNode,
+    required this.onSendMessage,
   });
 
   @override
@@ -19,6 +20,12 @@ class BottomTextField extends StatefulWidget {
 
 class _BottomTextFieldState extends State<BottomTextField> {
   late bool _isTextFieldFocused;
+
+  void _handleSendMessage() {
+    if (widget.messageController.text.trim().isNotEmpty) {
+      widget.onSendMessage(widget.messageController.text);
+    }
+  }
 
   @override
   void initState() {
@@ -63,6 +70,8 @@ class _BottomTextFieldState extends State<BottomTextField> {
                   ),
                   controller: widget.messageController,
                   focusNode: widget.focusNode,
+                  textInputAction: TextInputAction.send,
+                  onSubmitted: (value) => _handleSendMessage(),
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: _isTextFieldFocused
@@ -114,7 +123,7 @@ class _BottomTextFieldState extends State<BottomTextField> {
                   child: Center(
                     child: IconButton(
                       icon: const Icon(Icons.send, color: Color(0xFFEAE3D1)),
-                      onPressed: () {},
+                      onPressed: _handleSendMessage,
                       iconSize: 20,
                     ),
                   ),
