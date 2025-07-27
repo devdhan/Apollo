@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/commons/my_button.dart';
@@ -8,7 +9,15 @@ import 'package:tutorials/features/authentication/presentation/sign_up.dart';
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
-  void signino() {}
+  void signInWithGoogle() {
+    // Handle Google Sign In for Android
+    print('Signing in with Google');
+  }
+
+  void signInWithApple() {
+    // Handle Apple Sign In for iOS
+    print('Signing in with Apple');
+  }
 
   void signin(BuildContext context) {
     // Navigate to SignIn page
@@ -32,6 +41,38 @@ class WelcomeScreen extends StatelessWidget {
       context,
       MaterialPageRoute(builder: (context) => const GuestHomepage()),
     );
+  }
+
+  String get platformButtonText {
+    if (Platform.isAndroid) {
+      return 'Continue with Gmail';
+    } else {
+      return 'Continue with Apple';
+    }
+  }
+
+  Widget get platformButtonImage {
+    if (Platform.isAndroid) {
+      return Image.asset(
+        'assets/images/googlebtn_image.png',
+        width: 30.w,
+        height: 30.h,
+      );
+    } else {
+      return Image.asset(
+        'assets/images/apple.png',
+        width: 30.w,
+        height: 25.h,
+      );
+    }
+  }
+
+  VoidCallback get platformOnTap {
+    if (Platform.isAndroid) {
+      return signInWithGoogle;
+    } else {
+      return signInWithApple;
+    }
   }
 
   @override
@@ -114,17 +155,14 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20.h),
+                  //Button Google or Apple
                   MyButton(
-                    onTap: signino,
-                    buttonText: 'Continue with Gmail',
+                    onTap: platformOnTap,
+                    buttonText: platformButtonText,
                     fontSize: 16.sp,
                     buttoncolor: const Color(0xFFEAE3D1),
                     buttonTextColor: const Color(0xFF11100B),
-                    buttonImage: Image.asset(
-                      'assets/images/googlebtn_image.png',
-                      width: 30.w,
-                      height: 30.h,
-                    ),
+                    buttonImage: platformButtonImage,
                   ),
                 ],
               ),

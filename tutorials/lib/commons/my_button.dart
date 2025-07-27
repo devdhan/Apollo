@@ -6,7 +6,7 @@ class MyButton extends StatefulWidget {
   final String buttonText;
   final Color buttoncolor;
   final Color buttonTextColor;
-  final Image? buttonImage;
+  final Widget? buttonImage;
   final double fontSize;
 
   const MyButton({
