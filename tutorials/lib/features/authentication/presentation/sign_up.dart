@@ -24,6 +24,7 @@ class _SignUpState extends State<SignUp> {
   String passwordError = '';
   String confirmPasswordError = '';
   String generalError = '';
+  bool isLoading = false;
 
   // Email validation regex
   bool isValidEmail(String email) {
@@ -44,6 +45,7 @@ class _SignUpState extends State<SignUp> {
       passwordError = '';
       confirmPasswordError = '';
       generalError = '';
+      isLoading = false;
     });
 
     // Validate email and password fields
@@ -84,6 +86,7 @@ class _SignUpState extends State<SignUp> {
       });
       hasErrors = true;
     }
+    isLoading = false;
 
     // If there are validation errors, don't proceed
     if (hasErrors) return;
@@ -98,6 +101,11 @@ class _SignUpState extends State<SignUp> {
     } on FirebaseAuthException catch (e) {
       setState(() {
         generalError = e.message ?? 'Sign Up Failed';
+        isLoading = false;
+      });
+    } finally {
+      setState(() {
+        isLoading = false;
       });
     }
     //Navigate to Verify Email
@@ -245,6 +253,7 @@ class _SignUpState extends State<SignUp> {
                   fontSize: 16.sp,
                   buttoncolor: const Color(0xFF11100B),
                   buttonTextColor: const Color(0xFFEAE3D1),
+                  isLoading: isLoading,
                 ),
                 // Display general error message
                 if (generalError.isNotEmpty)

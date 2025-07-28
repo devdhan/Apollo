@@ -7,6 +7,7 @@ import 'package:tutorials/features/authservices/auth_service.dart';
 import 'package:tutorials/features/guestmode/presentation/guest_homepage.dart';
 import 'package:tutorials/features/authentication/presentation/sign_in.dart';
 import 'package:tutorials/features/authentication/presentation/sign_up.dart';
+import 'package:tutorials/features/homescreen/mainhomescreen/presentation/chat_one.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -17,10 +18,12 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   String errorMessage = '';
+  bool isLoading = false;
 
   Future<void> signInWithGoogle() async {
     setState(() {
       errorMessage = '';
+      isLoading = true;
     });
 
     try {
@@ -28,6 +31,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     } on FirebaseAuthException catch (e) {
       errorMessage = e.message ?? 'Authentication Failed';
     }
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const ChatOne()),
+      (route) => false,
+    );
   }
 
   void signInWithApple() {
@@ -179,6 +187,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     buttoncolor: const Color(0xFFEAE3D1),
                     buttonTextColor: const Color(0xFF11100B),
                     buttonImage: platformButtonImage,
+                    isLoading: isLoading,
                   ),
                   SizedBox(
                     height: 5.h,

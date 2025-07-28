@@ -181,7 +181,7 @@ class _ChatOneState extends State<ChatOne> {
           right: 0.w,
           child: Center(
             child: Text(
-              'Hello, ${authService.value.currentUser?.email.toString()}\nHow can I help you\ntoday?',
+              'Hello, ${authService.value.currentUser?.displayName.toString()}\nHow can I help you\ntoday?',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 34.sp,

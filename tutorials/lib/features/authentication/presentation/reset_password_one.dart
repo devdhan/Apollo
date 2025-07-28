@@ -16,6 +16,7 @@ class ResetPasswordOne extends StatefulWidget {
 class _ResetPasswordOneState extends State<ResetPasswordOne> {
   final emailController = TextEditingController();
   String emailError = '';
+  bool isLoading = false;
 
   // Function to send OTP
   Future<void> sendOtp(BuildContext context) async {
@@ -24,6 +25,7 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
     // Reset error message
     setState(() {
       emailError = '';
+      isLoading = true;
     });
 
     // Validate email field
@@ -31,6 +33,7 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
       setState(() {
         emailError = '*Email cannot be empty*';
       });
+      isLoading = false;
       return;
     }
     try {
@@ -40,6 +43,10 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
     } on FirebaseAuthException catch (e) {
       setState(() {
         emailError = e.message ?? 'Failed to reset Password';
+      });
+    } finally {
+      setState(() {
+        isLoading = false;
       });
     }
     // Function to navigate to OTP screen with the email
@@ -127,6 +134,7 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
                   fontSize: 16.sp,
                   buttoncolor: const Color(0xFF11100B),
                   buttonTextColor: const Color(0xFFEAE3D1),
+                  isLoading: isLoading,
                 ),
               ],
             ),

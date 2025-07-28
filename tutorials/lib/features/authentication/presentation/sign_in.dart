@@ -23,6 +23,7 @@ class _SignInState extends State<SignIn> {
   String emailError = '';
   String passwordError = '';
   String generalError = '';
+  bool isLoading = false;
 
   // Function to handle sign-in
   Future<void> signIn(BuildContext context) async {
@@ -33,6 +34,7 @@ class _SignInState extends State<SignIn> {
       emailError = '';
       passwordError = '';
       generalError = '';
+      isLoading = true;
     });
 
     if (email.isEmpty || password.isEmpty) {
@@ -43,6 +45,7 @@ class _SignInState extends State<SignIn> {
         if (password.isEmpty) {
           passwordError = '*Password is required*';
         }
+        isLoading = false;
       });
       return;
     }
@@ -54,6 +57,10 @@ class _SignInState extends State<SignIn> {
     } on FirebaseAuthException catch (e) {
       setState(() {
         generalError = e.message ?? 'Sign In Failed';
+      });
+    } finally {
+      setState(() {
+        isLoading = false;
       });
     }
     Navigator.pushAndRemoveUntil(
@@ -221,6 +228,7 @@ class _SignInState extends State<SignIn> {
                   fontSize: 16.sp,
                   buttoncolor: const Color(0xFF11100B),
                   buttonTextColor: const Color(0xFFEAE3D1),
+                  isLoading: isLoading,
                 ),
 
                 // Display general error message
