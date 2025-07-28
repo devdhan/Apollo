@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tutorials/auth_service.dart';
+import 'package:tutorials/features/authservices/auth_service.dart';
 import 'package:tutorials/features/authentication/presentation/welcome_screen.dart';
 
 void showLogoutDialog(BuildContext context) {

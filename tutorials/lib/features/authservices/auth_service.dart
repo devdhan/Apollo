@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 ValueNotifier<AuthService> authService = ValueNotifier(AuthService());
 
@@ -7,7 +8,7 @@ class AuthService {
   //create Firebase Auth Instance
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
-// Get the Currrent User
+  // Get the Currrent User
   User? get currentUser => firebaseAuth.currentUser;
 
   Stream<User?> get authStateChanges => firebaseAuth.authStateChanges();
@@ -33,14 +34,6 @@ class AuthService {
       password: password,
     );
   }
-
-// Function to send email verification link
-  // Future<void> verifyEmail() async {
-  //   User? user = currentUser;
-  //   if (user != null && !user.emailVerified) {
-  //     await user.sendEmailVerification();
-  //   }
-  // }
 
   //Function to signout/log out
   Future<void> signOut() async {
@@ -87,5 +80,22 @@ class AuthService {
     );
     await currentUser!.reauthenticateWithCredential(credential);
     await currentUser!.updatePassword(newPassword);
+  }
+
+  //Google Sign In
+  Future<UserCredential> signInWithGoogle() async {
+    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+
+    if (gUser == null) {
+      throw Exception("Sign in aborted by user");
+    }
+    final GoogleSignInAuthentication gAuth = await gUser.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: gAuth.accessToken,
+      idToken: gAuth.idToken,
+    );
+
+    return await firebaseAuth.signInWithCredential(credential);
   }
 }

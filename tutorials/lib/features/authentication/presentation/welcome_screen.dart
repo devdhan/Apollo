@@ -1,17 +1,33 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/commons/my_button.dart';
+import 'package:tutorials/features/authservices/auth_service.dart';
 import 'package:tutorials/features/guestmode/presentation/guest_homepage.dart';
 import 'package:tutorials/features/authentication/presentation/sign_in.dart';
 import 'package:tutorials/features/authentication/presentation/sign_up.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
 
-  void signInWithGoogle() {
-    // Handle Google Sign In for Android
-    print('Signing in with Google');
+  @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  String errorMessage = '';
+
+  Future<void> signInWithGoogle() async {
+    setState(() {
+      errorMessage = '';
+    });
+
+    try {
+      await authService.value.signInWithGoogle();
+    } on FirebaseAuthException catch (e) {
+      errorMessage = e.message ?? 'Authentication Failed';
+    }
   }
 
   void signInWithApple() {
@@ -164,6 +180,17 @@ class WelcomeScreen extends StatelessWidget {
                     buttonTextColor: const Color(0xFF11100B),
                     buttonImage: platformButtonImage,
                   ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Text(
+                    errorMessage,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )
                 ],
               ),
               Padding(

@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tutorials/commons/bottom_textfield.dart';
 import 'package:tutorials/commons/my_button.dart';
+import 'package:tutorials/features/authservices/auth_service.dart';
 import 'package:tutorials/features/homescreen/mainhomescreen/presentation/about_app.dart';
 import 'package:tutorials/commons/custom_drawer.dart';
 import 'package:tutorials/features/homescreen/mainhomescreen/presentation/search_history.dart';
-import 'package:tutorials/get_router_response.dart';
+import 'package:tutorials/features/authservices/get_router_response.dart';
 
 class Message {
   final String text;
@@ -180,7 +181,7 @@ class _ChatOneState extends State<ChatOne> {
           right: 0.w,
           child: Center(
             child: Text(
-              'Hello, there\nHow can I help you\ntoday?',
+              'Hello, ${authService.value.currentUser?.email.toString()}\nHow can I help you\ntoday?',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 34.sp,
