@@ -27,47 +27,85 @@ class _SignInState extends State<SignIn> {
 
   // Function to handle sign-in
   Future<void> signIn(BuildContext context) async {
-    final email = emailController.text.trim();
-    final password = passwordController.text;
+    if (!mounted) return;
 
+    final String email = emailController.text.trim();
+    final String password = passwordController.text;
+
+    // Reset error messages
     setState(() {
       emailError = '';
       passwordError = '';
       generalError = '';
+    });
+
+    // Validate fields first
+    bool hasErrors = false;
+
+    if (email.isEmpty) {
+      setState(() {
+        emailError = '*Email is required*';
+      });
+      hasErrors = true;
+    }
+
+    if (password.isEmpty) {
+      setState(() {
+        passwordError = '*Password is required*';
+      });
+      hasErrors = true;
+    }
+
+    // If there are validation errors, don't proceed
+    if (hasErrors) return;
+
+    // Set loading to true when starting the async operation
+    setState(() {
       isLoading = true;
     });
 
-    if (email.isEmpty || password.isEmpty) {
+    // Check if widget is still mounted before proceeding
+    if (!mounted) {
       setState(() {
-        if (email.isEmpty) {
-          emailError = '*Email is required*';
-        }
-        if (password.isEmpty) {
-          passwordError = '*Password is required*';
-        }
         isLoading = false;
       });
       return;
     }
+
     try {
       await authService.value.signIn(
         email: email,
         password: password,
       );
+
+      // Only navigate on successful sign in
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const ChatOne()),
+          (route) => false,
+        );
+      }
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        generalError = e.message ?? 'Sign In Failed';
-      });
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          generalError = e.message ?? 'Sign In Failed';
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      // Handle any other exceptions
+      if (mounted) {
+        setState(() {
+          generalError = 'An unexpected error occurred';
+          isLoading = false;
+        });
+      }
     }
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => const ChatOne()),
-      (route) => false,
-    );
   }
 
   void resetPasswordOne() {

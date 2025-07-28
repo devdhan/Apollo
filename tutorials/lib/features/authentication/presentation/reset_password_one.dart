@@ -20,42 +20,70 @@ class _ResetPasswordOneState extends State<ResetPasswordOne> {
 
   // Function to send OTP
   Future<void> sendOtp(BuildContext context) async {
+    if (!mounted) return;
+
     final String email = emailController.text.trim();
 
     // Reset error message
     setState(() {
       emailError = '';
-      isLoading = true;
     });
 
-    // Validate email field
+    // Validate email field first
     if (email.isEmpty) {
       setState(() {
         emailError = '*Email cannot be empty*';
       });
-      isLoading = false;
       return;
     }
+
+    // Set loading to true when starting the async operation
+    setState(() {
+      isLoading = true;
+    });
+
+    // Check if widget is still mounted before proceeding
+    if (!mounted) {
+      setState(() {
+        isLoading = false;
+      });
+      return;
+    }
+
     try {
       await authService.value.resetPassword(
         email: email,
       );
+
+      // Only navigate on successful password reset
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ResetSentPage(),
+          ),
+        );
+      }
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        emailError = e.message ?? 'Failed to reset Password';
-      });
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          emailError = e.message ?? 'Failed to reset Password';
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      // Handle any other exceptions
+      if (mounted) {
+        setState(() {
+          emailError = 'An unexpected error occurred';
+          isLoading = false;
+        });
+      }
     }
-    // Function to navigate to OTP screen with the email
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ResetSentPage(),
-      ),
-    );
   }
 
   @override

@@ -21,6 +21,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   bool isLoading = false;
 
   Future<void> signInWithGoogle() async {
+    if (!mounted) return;
+
     setState(() {
       errorMessage = '';
       isLoading = true;
@@ -28,14 +30,35 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
     try {
       await authService.value.signInWithGoogle();
+
+      // Only navigate on successful sign in
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const ChatOne()),
+          (route) => false,
+        );
+      }
     } on FirebaseAuthException catch (e) {
-      errorMessage = e.message ?? 'Authentication Failed';
+      if (mounted) {
+        setState(() {
+          errorMessage = e.message ?? 'Authentication Failed';
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      // Handle any other exceptions
+      if (mounted) {
+        setState(() {
+          errorMessage = 'An unexpected error occurred';
+          isLoading = false;
+        });
+      }
     }
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => const ChatOne()),
-      (route) => false,
-    );
   }
 
   void signInWithApple() {

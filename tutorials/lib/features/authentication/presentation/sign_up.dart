@@ -45,7 +45,6 @@ class _SignUpState extends State<SignUp> {
       passwordError = '';
       confirmPasswordError = '';
       generalError = '';
-      isLoading = false;
     });
 
     // Validate email and password fields
@@ -86,36 +85,59 @@ class _SignUpState extends State<SignUp> {
       });
       hasErrors = true;
     }
-    isLoading = false;
 
     // If there are validation errors, don't proceed
     if (hasErrors) return;
 
-    // Check if widget is still mounted before navigation
-    if (!mounted) return;
+    // Set loading to true when starting the async operation
+    setState(() {
+      isLoading = true;
+    });
+
+    // Check if widget is still mounted before proceeding
+    if (!mounted) {
+      setState(() {
+        isLoading = false;
+      });
+      return;
+    }
+
     try {
       await authService.value.createAccount(
         email: email,
         password: password,
       );
+
+      // Only navigate on successful account creation
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ChatOne(),
+          ),
+          (route) => false,
+        );
+      }
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        generalError = e.message ?? 'Sign Up Failed';
-        isLoading = false;
-      });
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          generalError = e.message ?? 'Sign Up Failed';
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      // Handle any other exceptions
+      if (mounted) {
+        setState(() {
+          generalError = 'An unexpected error occurred';
+          isLoading = false;
+        });
+      }
     }
-    //Navigate to Verify Email
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ChatOne(),
-      ),
-      (route) => false,
-    );
   }
 
   @override
