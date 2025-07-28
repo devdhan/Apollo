@@ -135,10 +135,7 @@ class _BottomTextFieldState extends State<BottomTextField> {
                   maxLines: null, // Allow unlimited lines
                   minLines: 1,
                   textAlignVertical: TextAlignVertical.top,
-                  onSubmitted: (value) {
-                    // Only send on Shift+Enter or when send button is pressed
-                    // Regular Enter will create new line
-                  },
+                  onSubmitted: (value) {},
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: _isTextFieldFocused
