@@ -181,10 +181,10 @@ class _ChatOneState extends State<ChatOne> {
           right: 0.w,
           child: Center(
             child: Text(
-              'Hello, ${authService.value.currentUser?.displayName.toString()}\nHow can I help you\ntoday?',
+              'Hello, ${authService.value.currentUser?.email.toString() ?? 'Apollites'}\nHow can I help you\ntoday?',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 34.sp,
+                fontSize: 30.sp,
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w700,
                 color: const Color(0xFF11100B),
