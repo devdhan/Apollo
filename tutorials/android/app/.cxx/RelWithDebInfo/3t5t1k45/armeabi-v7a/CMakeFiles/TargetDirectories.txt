@@ -1,0 +1,2 @@
+/Users/mac/Downloads/testfluttter/tutorials/android/app/.cxx/RelWithDebInfo/3t5t1k45/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/mac/Downloads/testfluttter/tutorials/android/app/.cxx/RelWithDebInfo/3t5t1k45/armeabi-v7a/CMakeFiles/rebuild_cache.dir

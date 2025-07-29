@@ -102,3 +102,5 @@ flutter_native_splash:
   color: "#EAE3D1"
   android: true
   ios: true
+  android_gravity: fill
+  fullscreen: true
