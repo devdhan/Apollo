@@ -99,8 +99,14 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 
 flutter_native_splash:
-  color: "#EAE3D1"
   android: true
   ios: true
   android_gravity: fill
   fullscreen: true
+
+  color: "#EAE3D1"
+  image: "assets/images/black.png"
+
+  android_12:
+    color: "#EAE3D1"
+    image: "assets/images/black.png"
