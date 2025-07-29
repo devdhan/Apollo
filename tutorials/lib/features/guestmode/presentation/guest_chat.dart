@@ -5,7 +5,7 @@ import 'package:tutorials/commons/logout_dialog.dart';
 import 'package:tutorials/commons/my_button.dart';
 import 'package:tutorials/features/homescreen/mainhomescreen/presentation/about_app.dart';
 import 'package:tutorials/commons/bottom_textfield.dart';
-import 'package:tutorials/features/authservices/get_router_response.dart';
+import '../../homescreen/mainhomescreen/data/get_router_response.dart';
 
 class Message {
   final String text;

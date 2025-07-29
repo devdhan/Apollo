@@ -7,7 +7,7 @@ import 'package:tutorials/features/authservices/auth_service.dart';
 import 'package:tutorials/features/homescreen/mainhomescreen/presentation/about_app.dart';
 import 'package:tutorials/commons/custom_drawer.dart';
 import 'package:tutorials/features/homescreen/mainhomescreen/presentation/search_history.dart';
-import 'package:tutorials/features/authservices/get_router_response.dart';
+import '../data/get_router_response.dart';
 
 class Message {
   final String text;
