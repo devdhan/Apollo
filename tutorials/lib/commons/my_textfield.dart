@@ -27,7 +27,6 @@ class _MyTextfieldState extends State<MyTextfield> {
   void initState() {
     super.initState();
     _obscureText = widget.obscureText;
-
     widget.controller.addListener(_checkText);
   }
 
