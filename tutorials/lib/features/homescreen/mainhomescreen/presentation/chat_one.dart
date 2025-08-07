@@ -70,7 +70,6 @@ class _ChatOneState extends State<ChatOne> {
   }
 
   // Send message function
-  //try teda options
   Future<void> sendMessage(String text) async {
     if (text.trim().isEmpty) return;
 
